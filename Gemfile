@@ -44,3 +44,4 @@ gem "email_spec", ">= 1.4.0", :group => :test
 gem "factory_girl_rails", ">= 4.1.0", :group => [:development, :test]
 gem "bootstrap-sass", ">= 2.2.2.0"
 gem "devise", ">= 2.1.2"
+gem "figaro", ">= 0.5.0"
