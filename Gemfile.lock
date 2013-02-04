@@ -81,6 +81,7 @@ GEM
     less-rails (2.2.6)
       actionpack (>= 3.1)
       less (~> 2.2.0)
+    libv8 (3.11.8.3)
     mail (2.4.4)
       i18n (>= 0.4.0)
       mime-types (~> 1.16)
@@ -191,6 +192,7 @@ DEPENDENCIES
   figaro (>= 0.5.0)
   jquery-rails
   less-rails
+  libv8 (~> 3.11.8)
   mongoid (>= 3.0.15)
   mongoid-rspec (>= 1.5.5)
   rails (= 3.2.11)
