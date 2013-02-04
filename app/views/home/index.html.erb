@@ -20,13 +20,12 @@
                 return;
             }
 
-            $("#subscriber_location").val( place.geometry.location )
-            alert( place.geometry.location );
+            $("#subscriber_location").val( place.geometry.location.lat() + "," + place.geometry.location.lng() );
         });
 
         $(document).ready(function(){
             $("#subscriber_email").focus();
-            $("#new_subscriber").validate({debug: true});
+            $("#new_subscriber").validate();
         })
 
     </script>
@@ -36,11 +35,14 @@
 
   <div class="span6 offset4">
     <h1>The Local Read</h1>
-    <p>Signup now n' shit</p>
-
+    <p>Signup now n' stuff</p>
 
     <%= form_for @subscriber, :url => signup_path do |f| %>
-
+        <% if @subscriber.errors.any? %>
+            <% @subscriber.errors.full_messages.each do |msg| %>
+                <li><%= msg %></li>
+            <% end %>
+        <% end %>
         <p>
             <%= f.text_field :email, :placeholder => "Enter your email", :class=>"required email" %>
         </p>
