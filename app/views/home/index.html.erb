@@ -1,2 +1,55 @@
-<h1>Home#index</h1>
-<p>Find me in app/views/home/index.html.erb</p>
+<% content_for :javascript_includes do %>
+    <script type="text/javascript" src="http://maps.googleapis.com/maps/api/js?libraries=places&sensor=false"></script>
+<% end %>
+
+<% content_for :javascript do %>
+
+    <script type="text/javascript">
+        var input = document.getElementById('place_search');
+        var options = {
+            types: ['(regions)']
+        };
+
+        autocomplete = new google.maps.places.Autocomplete(input, options);
+
+        google.maps.event.addListener(autocomplete, 'place_changed', function() {
+            var place = autocomplete.getPlace();
+            console.log( place );
+            if (!place.geometry) {
+                // Inform the user that a place was not found and return.
+                return;
+            }
+
+            $("#subscriber_location").val( place.geometry.location )
+            alert( place.geometry.location );
+        });
+
+        $(document).ready(function(){
+            $("#subscriber_email").focus();
+            $("#new_subscriber").validate({debug: true});
+        })
+
+    </script>
+<% end %>
+
+<div class="row">
+
+  <div class="span6 offset4">
+    <h1>The Local Read</h1>
+    <p>Signup now n' shit</p>
+
+
+    <%= form_for @subscriber, :url => signup_path do |f| %>
+
+        <p>
+            <%= f.text_field :email, :placeholder => "Enter your email", :class=>"required email" %>
+        </p>
+        <p>
+            <%= text_field :place, "search", :placeholder => "Enter your location" %>
+            <%= f.hidden_field :location, :id=>"subscriber_location" %>
+        </p>
+        <%= f.submit :value => "Signup" %>
+
+    <% end %>
+  </div>
+</div>
