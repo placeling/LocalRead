@@ -1,25 +1,56 @@
-set :application, "set your application name here"
-set :repository,  "set your repository location here"
+require 'bundler/capistrano'
 
-# set :scm, :git # You can set :scm explicitly or Capistrano will make an intelligent guess based on known version control directory names
-# Or: `accurev`, `bzr`, `cvs`, `darcs`, `git`, `mercurial`, `perforce`, `subversion` or `none`
+set :application, "LocalRead"
 
-role :web, "your web-server here"                          # Your HTTP server, Apache/etc
-role :app, "your app-server here"                          # This may be the same as your `Web` server
-role :db,  "your primary db-server here", :primary => true # This is where Rails migrations will run
-role :db,  "your slave db-server here"
+set :rvm_ruby_string, "ruby-1.9.3-p125"
+require "rvm/capistrano" # Load RVM's capistrano plugin.
 
-# if you want to clean up old releases on each deploy uncomment this:
-# after "deploy:restart", "deploy:cleanup"
+before 'deploy:setup', 'rvm:install_rvm'
+before 'deploy:setup', 'rvm:install_ruby'
 
-# if you're still using the script/reaper helper you will need
-# these http://github.com/rails/irs_process_scripts
+task :production do
+  set :gateway, 'beagle.placeling.com:11235'
+  server '10.112.241.90', :app, :web, :db, :scheduler, :primary => true
+  ssh_options[:forward_agent] = true #forwards local-localhost keys through gateway
+  set :user, 'ubuntu'
+  set :use_sudo, false
+  set :rails_env, "production"
+end
 
-# If you are using Passenger mod_rails uncomment this:
-# namespace :deploy do
-#   task :start do ; end
-#   task :stop do ; end
-#   task :restart, :roles => :app, :except => { :no_release => true } do
-#     run "#{try_sudo} touch #{File.join(current_path,'tmp','restart.txt')}"
-#   end
-# end
+task :staging do
+  server 'staging.placeling.com', :app, :web, :db, :scheduler, :primary => true
+  ssh_options[:forward_agent] = true
+  set :deploy_via, :remote_cache
+  set :user, 'ubuntu'
+  set :port, '11235'
+  set :use_sudo, false
+  set :rails_env, "staging"
+end
+
+default_run_options[:pty] = true # Must be set for the password prompt from git to work
+set :repository, "git@github.com:placeling/LocalRead.git" # Your clone URL
+set :scm, "git"
+
+set :deploy_to, "/var/www/apps/#{application}"
+set :shared_directory, "#{deploy_to}/shared"
+set :deploy_via, :remote_cache
+
+
+namespace :deploy do
+  task :start, :roles => :app do
+    run "touch #{current_release}/tmp/restart.txt"
+  end
+
+  task :stop, :roles => :app do
+    # Do nothing.
+  end
+
+  desc "Restart Application"
+  task :restart, :roles => :app do
+    run "touch #{current_release}/tmp/restart.txt"
+  end
+
+
+end
+
+require './config/boot'
