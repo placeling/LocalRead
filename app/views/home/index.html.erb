@@ -31,27 +31,42 @@
     </script>
 <% end %>
 
-<div class="row">
+<div class="page-container container-fluid">
 
-  <div class="span6 offset4">
-    <h1>The Local Read</h1>
-    <p>Signup now n' stuff</p>
+  <!-- Page title -->
+  <div class="row-fluid">
+    <div class="page-title span12">
+      <h1>The Local Read</h1>
+    </div>
+  </div>
 
-    <%= form_for @subscriber, :url => signup_path do |f| %>
-        <% if @subscriber.errors.any? %>
-            <% @subscriber.errors.full_messages.each do |msg| %>
-                <li><%= msg %></li>
-            <% end %>
-        <% end %>
-        <p>
+  <!-- Page description -->
+  <div class="row-fluid">
+    <div class="page-description span6">
+      <p>You should sign up and stuff</p>
+    </div>
+  </div>
+
+  <!-- Subscription form -->
+  <div class="row-fluid">
+    <div class="subscription-form span12">
+      <%= form_for @subscriber, :url => signup_path do |f| %>
+          <% if @subscriber.errors.any? %>
+              <% @subscriber.errors.full_messages.each do |msg| %>
+                  <li><%= msg %></li>
+              <% end %>
+          <% end %>
+          <p>
             <%= f.text_field :email, :placeholder => "Enter your email", :class=>"required email" %>
-        </p>
-        <p>
+          </p>
+          <p>
             <%= text_field :place, "search", :placeholder => "Enter your location" %>
             <%= f.hidden_field :location, :id=>"subscriber_location" %>
-        </p>
-        <%= f.submit :value => "Signup" %>
-
-    <% end %>
+          </p>
+          <%= f.submit :value => "Signup", :class=>"btn" %>
+          <div class="success-message"></div>
+          <div class="error-message"></div>
+      <% end %>
+    </div>
   </div>
 </div>
