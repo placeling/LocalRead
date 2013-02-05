@@ -7,6 +7,7 @@ LocalRead::Application.routes.draw do
   root :to => "home#index"
 
   post "/signup", :to => 'home#signup', :as => :signup
+  get "/signup", :to => 'home#dead_signup', :as => :signup
 
 
   # Sample resource route with sub-resources:

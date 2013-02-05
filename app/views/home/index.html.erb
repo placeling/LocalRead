@@ -43,7 +43,7 @@
   <!-- Page description -->
   <div class="row-fluid">
     <div class="page-description span6">
-      <p>You should sign up and stuff</p>
+      <p>Get Blogger reviews of nearby restaurants delivered to your email once a week.</p>
     </div>
   </div>
 
@@ -57,10 +57,10 @@
               <% end %>
           <% end %>
           <p>
-            <%= f.text_field :email, :placeholder => "Enter your email", :class=>"required email" %>
+            <%= f.text_field :email, :placeholder => "Enter Your Email", :class=>"required email" %>
           </p>
           <p>
-            <%= text_field :place, "search", :placeholder => "Enter your location" %>
+            <%= text_field :place, "search", :placeholder => "What City Do You Live In?" %>
             <%= f.hidden_field :location, :id=>"subscriber_location" %>
           </p>
           <%= f.submit :value => "Signup", :class=>"btn" %>

@@ -137,31 +137,4 @@ jQuery(document).ready(function() {
 
     $('.success-message').hide();
     $('.error-message').hide();
-
-    $('.subscription-form form').submit(function() {
-        var postdata = $('.subscription-form form').serialize();
-        $.ajax({
-            type: 'POST',
-            url: 'assets/sendmail.php',
-            data: postdata,
-            dataType: 'json',
-            success: function(json) {
-                if(json.valid == 0) {
-                    $('.success-message').hide();
-                    $('.error-message').hide();
-                    $('.error-message').html(json.message);
-                    $('.progress').css('margin', '10px 0 0 0');
-                    $('.error-message').fadeIn();
-                }
-                else {
-                    $('.error-message').hide();
-                    $('.success-message').hide();
-                    $('.subscription-form form').hide();
-                    $('.success-message').html(json.message);
-                    $('.success-message').fadeIn();
-                }
-            }
-        });
-        return false;
-    });
 });

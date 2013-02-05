@@ -4,6 +4,13 @@ class HomeController < ApplicationController
 
   end
 
+  def dead_signup
+
+    respond_to do |format|
+      format.html { render :action => "signup" }
+    end
+  end
+
   def signup
     @subscriber = Subscriber.new( :email => params[:subscriber][:email], :loc => params[:subscriber][:location].split(",") )
 
