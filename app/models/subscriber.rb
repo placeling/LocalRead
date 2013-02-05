@@ -3,7 +3,7 @@ class Subscriber
   # Include default devise modules. Others available are:
   # :token_authenticatable, :confirmable,
   # :lockable, :timeoutable and :omniauthable
-  devise :registerable, :database_authenticatable, :confirmable,
+  devise :registerable, :database_authenticatable,
          :rememberable, :trackable, :validatable
 
   ## Database authenticatable
