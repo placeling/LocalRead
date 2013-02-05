@@ -5,8 +5,6 @@ gem 'rails', '3.2.11'
 # Bundle edge Rails instead:
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
 
-
-
 # Gems used only for assets and not required
 # in production environments by default.
 group :assets do
@@ -39,7 +37,7 @@ gem 'jquery-rails'
 gem "capistrano"
 gem 'rvm-capistrano'
 
-gem "therubyracer"
+gem "therubyracer", "0.11.1"
 gem "less-rails" #Sprockets (what Rails 3.1 uses for its asset pipeline) supports LESS
 gem "twitter-bootstrap-rails"
 
