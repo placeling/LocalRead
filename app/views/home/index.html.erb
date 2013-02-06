@@ -31,42 +31,50 @@
     </script>
 <% end %>
 
-<div class="page-container container-fluid">
+<div id='wrap'>
+    <div class="page-container container-fluid" id="main">
 
-  <!-- Page title -->
-  <div class="row-fluid">
-    <div class="page-title span12">
-      <h1>The Local Read</h1>
-    </div>
-  </div>
+      <!-- Page title -->
+      <div class="row-fluid">
+        <div class="page-title span12">
+          <h1>The Local Read</h1>
+        </div>
+      </div>
 
-  <!-- Page description -->
-  <div class="row-fluid">
-    <div class="page-description span6">
-      <p>Get Blogger reviews of nearby restaurants delivered to your email once a week.</p>
-    </div>
-  </div>
+      <!-- Page description -->
+      <div class="row-fluid">
+        <div class="page-description span6">
+          <p>Writing about places near you.</p>
+          <p>In your inbox once a week.</p>
+        </div>
+      </div>
 
-  <!-- Subscription form -->
-  <div class="row-fluid">
-    <div class="subscription-form span12">
-      <%= form_for @subscriber, :url => signup_path do |f| %>
-          <% if @subscriber.errors.any? %>
-              <% @subscriber.errors.full_messages.each do |msg| %>
-                  <li><%= msg %></li>
+      <!-- Subscription form -->
+      <div class="row-fluid">
+        <div class="subscription-form span12">
+          <%= form_for @subscriber, :url => signup_path do |f| %>
+              <% if @subscriber.errors.any? %>
+                  <% @subscriber.errors.full_messages.each do |msg| %>
+                      <li style='color:white'><%= msg %></li>
+                  <% end %>
               <% end %>
+              <p>
+                <%= f.text_field :email, :placeholder => "Enter Your Email", :class=>"required email" %>
+              </p>
+              <p>
+                <%= text_field :place, "search", :placeholder => "What City Do You Live In?" %>
+                <%= f.hidden_field :location, :id=>"subscriber_location" %>
+              </p>
+              <%= f.submit :value => "Signup", :class=>"btn" %>
+              <div class="success-message"></div>
+              <div class="error-message"></div>
           <% end %>
-          <p>
-            <%= f.text_field :email, :placeholder => "Enter Your Email", :class=>"required email" %>
-          </p>
-          <p>
-            <%= text_field :place, "search", :placeholder => "What City Do You Live In?" %>
-            <%= f.hidden_field :location, :id=>"subscriber_location" %>
-          </p>
-          <%= f.submit :value => "Signup", :class=>"btn" %>
-          <div class="success-message"></div>
-          <div class="error-message"></div>
-      <% end %>
+        </div>
+      </div>
     </div>
-  </div>
 </div>
+<footer class="footer row-fluid" style="padding: 50px 0 0 0;">
+  <div class="social span4 offset8">
+    Brought to you by: <%= link_to image_tag("placeling_mini_logo.png"), "https://www.placeling.com" %>
+  </div>
+</footer>
