@@ -16,7 +16,7 @@ class HomeController < ApplicationController
 
     if @subscriber.save
       respond_to do |format|
-        format.html
+        format.html { redirect_to :action => "dead_signup" }
       end
     else
       respond_to do |format|
