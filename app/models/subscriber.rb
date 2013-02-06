@@ -27,6 +27,7 @@ class Subscriber
   # field :authentication_token, :type => String
 
   field :loc, :as => :location, :type => Array #meant to be home location, used at signup?
+  field :place_json,    :type => String
 
   before_validation :dummy_password
   validates_presence_of :loc

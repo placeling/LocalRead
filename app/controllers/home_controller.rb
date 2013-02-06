@@ -12,7 +12,7 @@ class HomeController < ApplicationController
   end
 
   def signup
-    @subscriber = Subscriber.new( :email => params[:subscriber][:email], :loc => params[:subscriber][:location].split(",") )
+    @subscriber = Subscriber.new( :email => params[:subscriber][:email], :loc => params[:subscriber][:location].split(","), :place_json => params[:subscriber][:place_json] )
 
     if @subscriber.save
       respond_to do |format|

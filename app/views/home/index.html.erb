@@ -21,6 +21,7 @@
             }
 
             $("#subscriber_location").val( place.geometry.location.lat() + "," + place.geometry.location.lng() );
+            $("#subscriber_place_json").val( JSON.stringify( place ) );
         });
 
         $(document).ready(function(){
@@ -64,6 +65,7 @@
               <p>
                 <%= text_field :place, "search", :placeholder => "What City Do You Live In?" %>
                 <%= f.hidden_field :location, :id=>"subscriber_location" %>
+                <%= f.hidden_field :place_json %>
               </p>
               <%= f.submit :value => "Signup", :class=>"btn" %>
               <div class="success-message"></div>
