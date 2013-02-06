@@ -27,6 +27,11 @@
         $(document).ready(function(){
             $("#subscriber_email").focus();
             $("#new_subscriber").validate();
+
+            if ($("#subscriber_place_json").val() != ""){
+                var place = JSON.parse( $("#subscriber_place_json").val() );
+                $("#place_search").val( place.name );
+            }
         })
 
     </script>

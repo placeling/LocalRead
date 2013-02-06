@@ -26,11 +26,11 @@ class Subscriber
   ## Token authenticatable
   # field :authentication_token, :type => String
 
-  field :loc, :as => :location, :type => Array #meant to be home location, used at signup?
+  field :location, :type => Array #meant to be home location, used at signup?
   field :place_json,    :type => String
 
   before_validation :dummy_password
-  validates_presence_of :loc
+  validates_presence_of :location, :message => "need to be selected from list"
 
   def dummy_password
     self.password = "dummypassword"
