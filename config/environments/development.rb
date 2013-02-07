@@ -31,22 +31,12 @@ LocalRead::Application.configure do
   # Expands the lines which load the assets
   config.assets.debug = true
 
-  config.action_mailer.delivery_method = :smtp
-  config.action_mailer.smtp_settings = {
-      :address => "smtp.gmail.com",
-      :port => 587,
-      :domain => '@dev.placeling.com',
-      :user_name => 'placeling.dev',
-      :password => 'gmail4placeling',
-      :authentication => 'plain',
-      :enable_starttls_auto => true}
-
   #DON'T REMOVE THIS LINE! -Prevents test emails from going to users
   ActionMailer::Base.register_interceptor(DevelopmentMailInterceptor)
 
   # Only use best-standards-support built into browsers
   config.action_dispatch.best_standards_support = :builtin
 
-  config.action_mailer.default_url_options = {:host => 'localhost', :port => 3000, :protocol => 'http'}
+  config.action_mailer.default_url_options = {:host => 'localhost', :port => 5000, :protocol => 'http'}
 
 end

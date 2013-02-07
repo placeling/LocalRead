@@ -3,8 +3,7 @@ class Subscriber
   # Include default devise modules. Others available are:
   # :token_authenticatable, :confirmable,
   # :lockable, :timeoutable and :omniauthable
-  devise :registerable, :database_authenticatable,
-         :rememberable, :trackable, :validatable
+  devise :registerable, :database_authenticatable, :confirmable
 
   ## Database authenticatable
   field :email,              :type => String, :default => ""
@@ -34,6 +33,10 @@ class Subscriber
 
   def dummy_password
     self.password = "dummypassword"
+  end
+
+  def email_required?
+    false
   end
 
 end
