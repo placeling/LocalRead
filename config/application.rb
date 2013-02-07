@@ -71,5 +71,3 @@ module LocalRead
 
   end
 end
-
-REDIS_CONFIG = YAML.load(File.open(Rails.root.join("config/redis.yml")))
