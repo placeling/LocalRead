@@ -46,6 +46,12 @@
 
 <div id='wrap'>
     <div class="page-container container-fluid" id="main">
+      <% if flash[:alert] %>
+          <div class="flash-error error"><%= flash[:alert] %></div>
+      <% end %>
+      <% if flash[:notice] %>
+          <div class="flash-notice alert"><%= flash[:notice] %></div>
+      <% end %>
 
       <!-- Page title -->
       <div class="row-fluid">
