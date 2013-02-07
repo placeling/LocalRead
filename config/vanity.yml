@@ -1,12 +1,12 @@
 development:
   adapter: mongodb
   host: localhost
-  database: placeling_vanity
+  database: localread_vanity
 staging:
   adapter: mongodb
   host: localhost
-  database: placeling_vanity
+  database: localread_vanity
 production:
   adapter: mongodb
   host: ec2-107-22-193-101.compute-1.amazonaws.com
-  database: placeling_vanity
+  database: localread_vanity
