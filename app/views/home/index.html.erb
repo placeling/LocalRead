@@ -30,7 +30,6 @@
 
             $('#place_search').keypress(function(e) {
                 if (e.which == 13) {
-                    google.maps.event.trigger(autocomplete, 'place_changed');
                     return false;
                 }
             });
