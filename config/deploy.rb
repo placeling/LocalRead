@@ -7,6 +7,8 @@ require "rvm/capistrano" # Load RVM's capistrano plugin.
 
 before 'deploy:setup', 'rvm:install_rvm'
 before 'deploy:setup', 'rvm:install_ruby'
+after "deploy:update", "foreman:export"
+after "deploy:update", "foreman:restart"
 
 task :production do
   set :gateway, 'beagle.placeling.com:11235'
@@ -53,7 +55,29 @@ namespace :deploy do
 
 end
 
+namespace :foreman do
+  desc 'Export the Procfile to Ubuntu upstart scripts'
+  task :export, :roles => :app do
+    run "cd #{release_path} && rvmsudo env PATH=$PATH bundle exec foreman export upstart /etc/init -e #{release_path}/config/foreman_#{rails_env}.env -a #{application} -u #{user} -l #{release_path}/log/foreman"
+  end
+
+  desc "Start the application services"
+  task :start, :roles => :app do
+    sudo "start #{application}"
+  end
+
+  desc "Stop the application services"
+
+  task :stop, :roles => :app do
+    sudo "stop #{application}"
+  end
+
+  desc "Restart the application services"
+  task :restart, :roles => :app do
+    run "sudo start #{application} || sudo restart #{application}"
+  end
+end
+
 require './config/boot'
 
-        require './config/boot'
-        require 'airbrake/capistrano'
+require 'airbrake/capistrano'

@@ -47,6 +47,14 @@ group :test, :development do
   gem "quiet_assets", ">= 1.0.1"
 end
 
+
+gem "foreman", "~> 0.60.2"
+gem "redis", "~> 2.2"
+gem "redis-namespace"
+gem 'redis-rails'
+gem 'resque', :require => 'resque/server'
+
+
 gem "therubyracer", "0.11.1"
 gem "less-rails" #Sprockets (what Rails 3.1 uses for its asset pipeline) supports LESS
 gem "twitter-bootstrap-rails"
