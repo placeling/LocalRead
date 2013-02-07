@@ -28,6 +28,13 @@
             $("#subscriber_email").focus();
             $("#new_subscriber").validate();
 
+            $('#place_search').keypress(function(e) {
+                if (e.which == 13) {
+                    google.maps.event.trigger(autocomplete, 'place_changed');
+                    return false;
+                }
+            });
+
             if ($("#subscriber_place_json").val() != ""){
                 var place = JSON.parse( $("#subscriber_place_json").val() );
                 $("#place_search").val( place.name );
