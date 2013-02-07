@@ -41,6 +41,8 @@ gem "aws-ses",:require => 'aws/ses'
 
 gem 'vanity'
 
+gem "airbrake"
+
 group :test, :development do
   gem "quiet_assets", ">= 1.0.1"
 end
