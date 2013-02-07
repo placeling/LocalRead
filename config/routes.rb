@@ -5,6 +5,8 @@ LocalRead::Application.routes.draw do
   get "/signup", :to => 'home#dead_signup', :as => :thanks
 
 
+  match '/vanitystats(/:action(/:id(.:format)))', :controller => :vanity
+
   root :to => "home#index"
 
   # Sample resource route with sub-resources:

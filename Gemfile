@@ -37,6 +37,14 @@ gem 'jquery-rails'
 gem "capistrano"
 gem 'rvm-capistrano'
 
+gem "aws-ses",:require => 'aws/ses'
+
+gem 'vanity'
+
+group :test, :development do
+  gem "quiet_assets", ">= 1.0.1"
+end
+
 gem "therubyracer", "0.11.1"
 gem "less-rails" #Sprockets (what Rails 3.1 uses for its asset pipeline) supports LESS
 gem "twitter-bootstrap-rails"
