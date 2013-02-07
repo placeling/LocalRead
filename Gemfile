@@ -53,6 +53,7 @@ gem "redis", "~> 2.2"
 gem "redis-namespace"
 gem 'redis-rails'
 gem 'resque', :require => 'resque/server'
+gem 'resque_mailer'
 
 
 gem "therubyracer", "0.11.1"
@@ -70,3 +71,5 @@ gem "email_spec", ">= 1.4.0", :group => :test
 gem "factory_girl_rails", ">= 4.1.0", :group => [:development, :test]
 gem "devise", ">= 2.1.2"
 gem "figaro", ">= 0.5.0"
+
+gem "devise-async"
