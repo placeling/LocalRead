@@ -1,5 +1,6 @@
 class WeeklyMailer < ActionMailer::Base
   default from: "no-reply@thelocalread.com"
+  include Resque::Mailer
 
   def thelocal( subscriber_id )
     @user = User.find(subscriber_id)
