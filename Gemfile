@@ -45,7 +45,11 @@ gem "airbrake"
 
 group :test, :development do
   gem "quiet_assets", ">= 1.0.1"
+  gem 'mail_view', :git => 'https://github.com/37signals/mail_view.git'
 end
+
+gem "actionmailer_inline_css"
+gem "instagram"
 
 
 gem "foreman", "~> 0.60.2"

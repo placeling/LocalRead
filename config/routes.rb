@@ -9,7 +9,13 @@ LocalRead::Application.routes.draw do
 
   match '/vanitystats(/:action(/:id(.:format)))', :controller => :vanity
 
-  root :to => "home#index"
+
+  if Rails.env.development?
+    mount WeeklyMailer::Preview => 'mail_view'
+  end
 
   mount Resque::Server, :at => "/resque"
+
+  root :to => "home#index"
+
 end
