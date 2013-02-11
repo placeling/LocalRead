@@ -21,4 +21,4 @@ production:
   host: ip-10-91-3-30.ec2.internal
   port: 6379
   namespace: tlr_prod
-  redis: redis://ip-10-91-3-30.ec2.internal:6379/0/tlr_prod
+  redis: redis://localhost:6379/0/tlr_prod

@@ -12,7 +12,7 @@ after "deploy:update", "foreman:restart"
 
 task :production do
   set :gateway, 'beagle.placeling.com:11235'
-  server '10.112.241.90', :app, :web, :db, :scheduler, :primary => true
+  server '10.91.3.30', :app, :web, :db, :scheduler, :primary => true
   ssh_options[:forward_agent] = true #forwards local-localhost keys through gateway
   set :user, 'ubuntu'
   set :use_sudo, false

@@ -8,5 +8,5 @@ staging:
   database: localread_vanity
 production:
   adapter: mongodb
-  host: ec2-107-22-193-101.compute-1.amazonaws.com
+  host: localhost
   database: localread_vanity
