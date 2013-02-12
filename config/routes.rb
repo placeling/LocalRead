@@ -6,6 +6,7 @@ LocalRead::Application.routes.draw do
   post "/", :to => 'home#signup', :as => :signup
   get "/signup", :to => 'home#dead_signup', :as => :thanks
 
+  get "/vancouver", :to => 'home#city', :as => :city, :lat =>  "49.261226", :lng => "-123.1139268"
 
   match '/vanitystats(/:action(/:id(.:format)))', :controller => :vanity
 
