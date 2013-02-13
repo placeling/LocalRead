@@ -1,3 +1,10 @@
+<% content_for :head do %>
+  <meta property="og:title" content="The Local Read Brings You The Best Of Vancouver"/>
+  <meta property="og:url" content="http://www.thelocalread.com/vancouver/"/>
+  <meta property="og:description" content="Every week we scour 100+ of Vancouver's best blogs to the places that matter. You get them in a weekly email.">
+  <meta name="description" content="Every week we scour 100+ of Vancouver's best blogs to the places that matter. You get them in a weekly email.">
+<% end %>
+
 <% content_for :javascript do %>
 
     <script type="text/javascript">
@@ -71,7 +78,7 @@
           <div class="blog_caption"><%= link_to "Vancouver Weekly", "http://www.vancouverweekly.com", :class=>"blog_link", :target=>"_blank" %></div>
         </div>
         <div class="span2 link_holder">
-          <div><%= link_to image_tag("logos/van_mag.gif", :alt=>"Vancouver Magazine", :class=>"logo"), "http://www.vanmag.com", :target=>"_blank" %></div>
+          <div><%= link_to image_tag("logos/van_mag.png", :alt=>"Vancouver Magazine", :class=>"logo"), "http://www.vanmag.com", :target=>"_blank" %></div>
           <div class="blog_caption"><%= link_to "Vancouver Magazine", "http://www.vancouverweekly.com", :class=>"blog_link", :target=>"_blank" %></div>
         </div>
         <div class="span2 link_holder">
