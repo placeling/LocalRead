@@ -57,7 +57,7 @@ The Best of Vancouver In Your Inbox Every Week
               <%= f.text_field :email, :placeholder => "Enter Your Email", :class=>"required email" %>
             </p>
             <p>
-              <%= f.hidden_field :location, :id=>"subscriber_location" %>
+              <%= f.hidden_field :location, :id=>"subscriber_location", :value => "#{@subscriber.location[0]},#{@subscriber.location[1]}" %>
               <%= f.hidden_field :place_json %>
             </p>
             <%= f.submit :value => "Subscribe", :class=>"btn" %>
