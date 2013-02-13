@@ -4,7 +4,7 @@ class HomeController < ApplicationController
   end
 
   def city
-    @subscriber = Subscriber.new( :location => [params[:lat], :lng => params[:lng]], :place_json=>"{\"address_components\":[{\"long_name\":\"Vancouver\",\"short_name\":\"Vancouver\",\"types\":[\"locality\",\"political\"]}" )
+    @subscriber = Subscriber.new( :location => [params[:lat], params[:lng]], :place_json=>"{\"address_components\":[{\"long_name\":\"Vancouver\",\"short_name\":\"Vancouver\",\"types\":[\"locality\",\"political\"]}" )
 
     respond_to do |format|
       format.html
