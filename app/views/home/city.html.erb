@@ -1,10 +1,6 @@
-
-
 <% content_for :javascript do %>
 
     <script type="text/javascript">
-
-
         $(document).ready(function(){
             $("#subscriber_email").focus();
             $("#new_subscriber").validate();
@@ -25,16 +21,15 @@
     <!-- Page title -->
     <div class="row-fluid">
       <div class="page-title span12">
-        <h1>The Local Read</h1>
+        <h1>Vancouver</h1>
       </div>
     </div>
 
     <!-- Page description -->
     <div class="row-fluid">
       <div class="page-description span6">
-        <p>Writing about places near you.</p>
-        <p>In your inbox once a week.</p>
-        <p><%= ab_test :landing_copy %></p>
+        <p>We read Vancouver's best blogs to find the places that matter.</p>
+        <p>You get them in a weekly email.</p>
       </div>
     </div>
 
@@ -58,6 +53,220 @@
             <div class="success-message"></div>
             <div class="error-message"></div>
         <% end %>
+      </div>
+    </div>
+    
+    <!-- Sample blogs -->
+    <div id="all_blogs">
+      <div class="row-fluid">
+        <h2>100+ Blogs Including:</h2>
+      </div>
+      <div class="row-fluid row_space">
+        <div class="span2 link_holder">
+          <div><%= link_to image_tag("logos/bored_in_vancouver.png", :alt=>"Bored in Vancouver", :class=>"logo"), "http://www.boredinvancouver.com", :target=>"_blank" %></div>
+          <div class="blog_caption"><%= link_to "Bored In Vancouver", "http://www.boredinvancouver.com", :class=>"blog_link", :target=>"_blank" %></div>
+        </div>
+        <div class="span2 link_holder">
+          <div><%= link_to image_tag("logos/vancouver_weekly.jpeg", :alt=>"Vancouver Weekly", :class=>"logo"), "http://www.vancouverweekly.com", :target=>"_blank" %></div>
+          <div class="blog_caption"><%= link_to "Vancouver Weekly", "http://www.vancouverweekly.com", :class=>"blog_link", :target=>"_blank" %></div>
+        </div>
+        <div class="span2 link_holder">
+          <div><%= link_to image_tag("logos/van_mag.gif", :alt=>"Vancouver Magazine", :class=>"logo"), "http://www.vanmag.com", :target=>"_blank" %></div>
+          <div class="blog_caption"><%= link_to "Vancouver Magazine", "http://www.vancouverweekly.com", :class=>"blog_link", :target=>"_blank" %></div>
+        </div>
+        <div class="span2 link_holder">
+          <div><%= link_to image_tag("logos/vmr.jpeg", :alt=>"Vancouver Music Review", :class=>"logo"), "http://www.vancouvermusicreview.com", :target=>"_blank" %></div>
+          <div class="blog_caption"><%= link_to "Vancouver Music Review", "http://www.vancouvermusicreview.com", :class=>"blog_link", :target=>"_blank" %></div>
+        </div>
+        <div class="span2 link_holder">
+          <div><%= link_to image_tag("logos/rain_city.png", :alt=>"Rain City Chronicles", :class=>"logo"), "http://www.raincitychronicles.com/", :target=>"_blank" %></div>
+          <div class="blog_caption"><%= link_to "Rain City Chronicles", "http://www.raincitychronicles.com/", :class=>"blog_link", :target=>"_blank" %></div>
+        </div>
+        <div class="span2 link_holder">
+          <div><%= link_to image_tag("logos/gallery_gachet.png", :alt=>"Gallery Gachet", :class=>"logo"), "http://gachet.org/", :target=>"_blank" %></div>
+          <div class="blog_caption"><%= link_to "Gallery Gachet", "http://gachet.org/", :class=>"blog_link", :target=>"_blank" %></div>
+        </div>
+      </div>
+        <div class="row-fluid row_space">
+          <div class="span2 link_holder">
+            <div><%= link_to image_tag("logos/kdot.png", :alt=>"K Dot", :class=>"logo"), "http://www.kdot.ca/blog/", :target=>"_blank" %></div>
+            <div class="blog_caption"><%= link_to "K Dot", "http://www.kdot.ca/blog/", :class=>"blog_link", :target=>"_blank" %></div>
+          </div>
+          <div class="span2 link_holder">
+            <div><%= link_to image_tag("logos/gay_vancouver.png", :alt=>"Gay Vancouver", :class=>"logo"), "http://www.gayvancouver.net/", :target=>"_blank" %></div>
+            <div class="blog_caption"><%= link_to "Gay Vancouver", "http://www.gayvancouver.net/", :class=>"blog_link", :target=>"_blank" %></div>
+          </div>
+          <div class="span2 link_holder">
+            <div><%= link_to image_tag("logos/vancouver_mom.png", :alt=>"Vancouver Mom", :class=>"logo"), "http://vancouvermom.ca/", :target=>"_blank" %></div>
+            <div class="blog_caption"><%= link_to "Vancouver Mom", "http://vancouvermom.ca/", :class=>"blog_link", :target=>"_blank" %></div>
+          </div>
+          <div class="span2 link_holder">
+            <div><%= link_to image_tag("logos/megaphone.png", :alt=>"Megaphone", :class=>"logo"), "http://www.megaphonemagazine.com/", :target=>"_blank" %></div>
+            <div class="blog_caption"><%= link_to "Megaphone", "http://www.megaphonemagazine.com/", :class=>"blog_link", :target=>"_blank" %></div>
+          </div>
+          <div class="span2 link_holder">
+            <div><%= link_to image_tag("logos/hot_art.png", :alt=>"Hot Art Wet City", :class=>"logo"), "http://hotartwetcity.com/", :target=>"_blank" %></div>
+            <div class="blog_caption"><%= link_to "Hot Art Wet City", "http://hotartwetcity.com/", :class=>"blog_link", :target=>"_blank" %></div>
+          </div>
+          <div class="span2 link_holder">
+            <div><%= link_to image_tag("logos/kitsilano.png", :alt=>"Kitsilano.ca", :class=>"logo"), "http://kitsilano.ca", :target=>"_blank" %></div>
+            <div class="blog_caption"><%= link_to "Kitsilano.ca", "http://kitsilano.ca/", :class=>"blog_link", :target=>"_blank" %></div>
+          </div>
+        </div>
+        <div class="row-fluid row_space">
+          <div class="span2 link_holder">
+            <div><%= link_to image_tag("logos/vpsn.png", :alt=>"Vancouver Public Space Network", :class=>"logo"), "http://vancouverpublicspace.wordpress.com/", :target=>"_blank" %></div>
+            <div class="blog_caption"><%= link_to "Vancouver Public Space Network", "http://vancouverpublicspace.wordpress.com/", :class=>"blog_link", :target=>"_blank" %></div>
+          </div>
+          <div class="span2 link_holder">
+            <div><%= link_to image_tag("logos/spacing.png", :alt=>"Spacing Vancouver", :class=>"logo"), "http://spacing.ca/vancouver/", :target=>"_blank" %></div>
+            <div class="blog_caption"><%= link_to "Spacing Vancouver", "http://spacing.ca/vancouver/", :class=>"blog_link", :target=>"_blank" %></div>
+          </div>
+          <div class="span2 link_holder">
+            <div><%= link_to image_tag("logos/chow_times.png", :alt=>"Chow Times", :class=>"logo"), "http://www.chowtimes.com/", :target=>"_blank" %></div>
+            <div class="blog_caption"><%= link_to "Chow Times", "http://www.chowtimes.com/", :class=>"blog_link", :target=>"_blank" %></div>
+          </div>
+          <div class="span2 link_holder">
+            <div><%= link_to image_tag("logos/huffpo.png", :alt=>"Huffington Post", :class=>"logo"), "http://www.huffingtonpost.ca/news/vancouver", :target=>"_blank" %></div>
+            <div class="blog_caption"><%= link_to "Huffington Post", "http://www.huffingtonpost.ca/news/vancouver", :class=>"blog_link", :target=>"_blank" %></div>
+          </div>
+        </div>
+      <div class="row-fluid row_space">
+        <div class="span2 link_holder">
+          <%= link_to "The Canada Line", "http://blog.thecanadaline.com/", :class=>"blog_link", :target=>"_blank" %>
+        </div>
+        <div class="span2 link_holder">
+          <%= link_to "Remy Scalza", "http://remyscalza.com/", :class=>"blog_link", :target=>"_blank" %>
+        </div>
+        <div class="span2 link_holder">
+          <%= link_to "Stephanie Sorensen", "http://www.stephaniesorensen.blogspot.ca/", :class=>"blog_link", :target=>"_blank" %>
+        </div>
+        <div class="span2 link_holder">
+          <%= link_to "Grandview Heritage Group", "http://grandviewheritagegroup.org/", :class=>"blog_link", :target=>"_blank" %>
+        </div>
+        <div class="span2 link_holder">
+          <%= link_to "Geoff Meggs", "http://www.geoffmeggs.ca/", :class=>"blog_link", :target=>"_blank" %>
+        </div>
+        <div class="span2 link_holder">
+          <%= link_to "Fabulously Frugal in Vancouver", "http://fabulouslyfrugalinvancouver.wordpress.com/", :class=>"blog_link", :target=>"_blank" %>
+        </div>
+      </div>
+      <div class="row-fluid row_space">
+        <div class="span2 link_holder">
+          <%= link_to "The Soulcialite", "http://thesoulcialite.wordpress.com/", :class=>"blog_link", :target=>"_blank" %>
+        </div>
+        <div class="span2 link_holder">
+          <%= link_to "Rick Chung", "http://www.rickchung.com/", :class=>"blog_link", :target=>"_blank" %>
+        </div>
+        <div class="span2 link_holder">
+          <%= link_to "Gourmet Fury", "http://www.gourmetfury.com/", :class=>"blog_link", :target=>"_blank" %>
+        </div>
+        <div class="span2 link_holder">
+          <%= link_to "Useful Spaces", "http://www.usefulspaces.net/", :class=>"blog_link", :target=>"_blank" %>
+        </div>
+        <div class="span2 link_holder">
+          <%= link_to "Grace Cheung 604", "http://xmasbb.blogspot.ca/", :class=>"blog_link", :target=>"_blank" %>
+        </div>
+        <div class="span2 link_holder">
+          <%= link_to "Tamara Taggart", "http://tamarataggart.com/", :class=>"blog_link", :target=>"_blank" %>
+        </div>
+      </div>
+      <div class="row-fluid row_space">
+        <div class="span2 link_holder">
+          <%= link_to "Supernatural Robyn", "http://www.bcrobyn.com/", :class=>"blog_link", :target=>"_blank" %>
+        </div>
+        <div class="span2 link_holder">
+          <%= link_to "Vancouver Is Awesome", "http://vancouverisawesome.com/", :class=>"blog_link", :target=>"_blank" %>
+        </div>
+        <div class="span2 link_holder">
+          <%= link_to "Good Life Vancouver", "http://goodlifevancouver.com/", :class=>"blog_link", :target=>"_blank" %>
+        </div>
+        <div class="span2 link_holder">
+          <%= link_to "Mike Klassen", "http://mikeklassen.net/", :class=>"blog_link", :target=>"_blank" %>
+        </div>
+        <div class="span2 link_holder">
+          <%= link_to "YVR Shoots", "http://yvrshoots.com", :class=>"blog_link", :target=>"_blank" %>
+        </div>
+        <div class="span2 link_holder">
+          <%= link_to "Vancouver Foodster", "http://vancouverfoodster.com", :class=>"blog_link", :target=>"_blank" %>
+        </div>
+      </div>
+      <div class="row-fluid row_space">
+        <div class="span2 link_holder">
+          <%= link_to "AuthentiCity", "http://www.vancouverarchives.ca/", :class=>"blog_link", :target=>"_blank" %>
+        </div>
+        <div class="span2 link_holder">
+          <%= link_to "eat. drink. fly", "http://eat-drink-fly.com/", :class=>"blog_link", :target=>"_blank" %>
+        </div>
+        <div class="span2 link_holder">
+          <%= link_to "Living Vancouver Canada", "http://livingvancouvercanada.blogspot.ca/", :class=>"blog_link", :target=>"_blank" %>
+        </div>
+        <div class="span2 link_holder">
+          <%= link_to "Vancouver Food Policy Council", "http://www.vancouverfoodpolicycouncil.ca/", :class=>"blog_link", :target=>"_blank" %>
+        </div>
+        <div class="span2 link_holder">
+          <%= link_to "Vancity Buzz", "http://www.vancitybuzz.com/", :class=>"blog_link", :target=>"_blank" %>
+        </div>
+        <div class="span2 link_holder">
+          <%= link_to "Aquablog", "http://www.aquablog.ca/", :class=>"blog_link", :target=>"_blank" %>
+        </div>
+      </div>
+      <div class="row-fluid row_space">
+        <div class="span2 link_holder">
+          <%= link_to "Changing City", "http://changingcitybook.com/", :class=>"blog_link", :target=>"_blank" %>
+        </div>
+        <div class="span2 link_holder">
+          <%= link_to "Changing Vancouver", "http://changingvancouver.wordpress.com/", :class=>"blog_link", :target=>"_blank" %>
+        </div>
+        <div class="span2 link_holder">
+          <%= link_to "State of Vancouver", "http://www.francesbula.com/", :class=>"blog_link", :target=>"_blank" %>
+        </div>
+        <div class="span2 link_holder">
+          <%= link_to "Illustrated Vancouver", "http://illustratedvancouver.ca/", :class=>"blog_link", :target=>"_blank" %>
+        </div>
+        <div class="span2 link_holder">
+          <%= link_to "Price Tags", "http://pricetags.wordpress.com/", :class=>"blog_link", :target=>"_blank" %>
+        </div>
+        <div class="span2 link_holder">
+          <%= link_to "Stephen Rees' Blog", "http://stephenrees.wordpress.com/", :class=>"blog_link", :target=>"_blank" %>
+        </div>
+      </div>
+      <div class="row-fluid row_space">
+        <div class="span2 link_holder">
+          <%= link_to "Kids Vancouver", "http://www.kidsvancouver.com/blog", :class=>"blog_link", :target=>"_blank" %>
+        </div>
+        <div class="span2 link_holder">
+          <%= link_to "Blogra", "http://www.straight.com/blogra", :class=>"blog_link", :target=>"_blank" %>
+        </div>
+        <div class="span2 link_holder">
+          <%= link_to "Fine Times", "http://blogs.vancouversun.com/tag/fine-times/", :class=>"blog_link", :target=>"_blank" %>
+        </div>
+        <div class="span2 link_holder">
+          <%= link_to "Word of Mouth", "http://blogs.vancouversun.com/category/staff/life/food/", :class=>"blog_link", :target=>"_blank" %>
+        </div>
+        <div class="span2 link_holder">
+          <%= link_to "Gone Wild", "http://blogs.vancouversun.com/category/staff/environment", :class=>"blog_link", :target=>"_blank" %>
+        </div>
+        <div class="span2 link_holder">
+          <%= link_to "Cat's Meow", "http://blogs.theprovince.com/tag/cats-meow/", :class=>"blog_link", :target=>"_blank" %>
+        </div>
+      </div>
+      <div class="row-fluid row_space">
+        <div class="span2 link_holder">
+          <%= link_to "Sherman's Food Adventures", "http://www.shermansfoodadventures.com", :class=>"blog_link", :target=>"_blank" %>
+        </div>
+        <div class="span2 link_holder">
+          <%= link_to "Follow Me Foodie", "http://www.followmefoodie.com/", :class=>"blog_link", :target=>"_blank" %>
+        </div>
+        <div class="span2 link_holder">
+          <%= link_to "Miss 604", "http://www.miss604.com/", :class=>"blog_link", :target=>"_blank" %>
+        </div>
+        <div class="span2 link_holder">
+          <%= link_to "Food Source", "http://www.vancouverobserver.com/blogs/foodsource", :class=>"blog_link", :target=>"_blank" %>
+        </div>
+        <div class="span2 link_holder">
+          <%= link_to "Civic Voices", "http://www.vancouverobserver.com/blogs/civicvoices", :class=>"blog_link", :target=>"_blank" %>
+        </div>
       </div>
     </div>
   </div>
