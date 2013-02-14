@@ -39,4 +39,8 @@ class Subscriber
     false
   end
 
+  def location_cache_key
+    "#{self.location[0].to_f.round(3)},#{self.location[1].to_f.round(3)}"
+  end
+
 end

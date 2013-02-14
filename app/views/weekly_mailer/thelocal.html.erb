@@ -12,6 +12,19 @@
             <p class="right" style="margin: 5px;padding: 0px;float: right;"><a href="<%= root_url() %>"><img src="https://www.placeling.com/assets/logo.png"></a></p>
           </td>
         </tr>
+
+          <% @instagrams.each do |instagram| %>
+            <tr>
+            <td>
+                <%= instagram.user.username %>(<%=  instagram.likes['count'] %>)
+              <%=  instagram.location %>
+              <%= time_ago_in_words( Time.at( instagram.created_time.to_i ) ) %>
+            </td>
+            <td>
+              <%= link_to image_tag(instagram.images.low_resolution.url), instagram.link %>
+            </td>
+            </tr>
+          <% end %>
       </table>
     </td></tr>
   </table>
