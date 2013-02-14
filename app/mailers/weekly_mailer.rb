@@ -26,7 +26,7 @@ class WeeklyMailer < ActionMailer::Base
       end
     end
 
-    $redis.setex( subscriber.location_cache_key, 60*10, placed_instagrams.to_json )
+    $redis.setex( subscriber.location_cache_key, 60*60*24, placed_instagrams.to_json )
 
     return placed_instagrams
   end
@@ -40,8 +40,13 @@ class WeeklyMailer < ActionMailer::Base
     if @instagrams_raw.nil?
       @instagrams = grab_instagrams_for( @subscriber )
     else
-      @instagrams = Json.parse( @instagrams )
+      @instagrams = []
+      JSON.parse( @instagrams_raw ).each do |instagram|
+        @instagrams << Hashie::Mash.new( instagram )
+      end
     end
+
+    @instagrams = @instagrams.first(4)
 
     mail(:to => @subscriber.email, :subject => "The Local Read for #{Time.now.strftime("%B %d, %Y")}") do |format|
       format.text { render 'thelocal' }
