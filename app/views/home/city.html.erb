@@ -38,35 +38,40 @@ The Best of Vancouver In Your Inbox Every Week
 
     <!-- Page description -->
     <div class="row-fluid">
-      <div class="page-description span6">
+      <div class="page-description span5">
         <p>We follow Vancouver's best blogs to find the places that people are talking about.</p>
         <p>You get them in one weekly email.</p>
+        <div class="subscription-form">
+          <%= form_for @subscriber, :url => signup_path do |f| %>
+              <% if @subscriber.errors.any? %>
+                  <% @subscriber.errors.full_messages.each do |msg| %>
+                      <li style='color:white'><%= msg %></li>
+                  <% end %>
+              <% end %>
+              <p>
+                <%= f.text_field :email, :placeholder => "Enter Your Email", :class=>"required email" %>
+              </p>
+              <p>
+                <%= f.hidden_field :location, :id=>"subscriber_location", :value => "#{@subscriber.location[0]},#{@subscriber.location[1]}" %>
+                <%= f.hidden_field :place_json %>
+              </p>
+              <%= f.submit :value => "Subscribe", :class=>"btn" %>
+              <div class="success-message"></div>
+              <div class="error-message"></div>
+          <% end %>
+        </div>
+      </div>
+      <div class="span7">
+        <%= image_tag('email_snippet.png') %>
       </div>
     </div>
-
-    <!-- Subscription form -->
+<!--
     <div class="row-fluid">
-      <div class="subscription-form span12">
-        <%= form_for @subscriber, :url => signup_path do |f| %>
-            <% if @subscriber.errors.any? %>
-                <% @subscriber.errors.full_messages.each do |msg| %>
-                    <li style='color:white'><%= msg %></li>
-                <% end %>
-            <% end %>
-            <p>
-              <%= f.text_field :email, :placeholder => "Enter Your Email", :class=>"required email" %>
-            </p>
-            <p>
-              <%= f.hidden_field :location, :id=>"subscriber_location", :value => "#{@subscriber.location[0]},#{@subscriber.location[1]}" %>
-              <%= f.hidden_field :place_json %>
-            </p>
-            <%= f.submit :value => "Subscribe", :class=>"btn" %>
-            <div class="success-message"></div>
-            <div class="error-message"></div>
-        <% end %>
+      <div class="subscription-form span12 pad_subscription">
+
       </div>
     </div>
-    
+    -->
     <!-- Sample blogs -->
     <div id="all_blogs">
       <div class="row-fluid">

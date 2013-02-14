@@ -58,37 +58,37 @@
           <h1>The Local Read</h1>
         </div>
       </div>
-
-      <!-- Page description -->
+      
+      <!-- Description & subscription -->
       <div class="row-fluid">
         <div class="page-description span6">
           <p>Writing about places near you.</p>
           <p>In your inbox once a week.</p>
           <p><%= ab_test :landing_copy %></p>
+          
+          <div class="subscription-form">
+            <%= form_for @subscriber, :url => signup_path do |f| %>
+                <% if @subscriber.errors.any? %>
+                    <% @subscriber.errors.full_messages.each do |msg| %>
+                        <li style='color:white'><%= msg %></li>
+                    <% end %>
+                <% end %>
+                <p>
+                  <%= f.text_field :email, :placeholder => "Enter Your Email", :class=>"required email" %>
+                </p>
+                <p>
+                  <%= text_field :place, "search", :placeholder => "What City Do You Live In?" %>
+                  <%= f.hidden_field :location, :id=>"subscriber_location" %>
+                  <%= f.hidden_field :place_json %>
+                </p>
+                <%= f.submit :value => "Subscribe", :class=>"btn" %>
+                <div class="success-message"></div>
+                <div class="error-message"></div>
+            <% end %>
+          </div>
         </div>
-      </div>
-
-      <!-- Subscription form -->
-      <div class="row-fluid">
-        <div class="subscription-form span12">
-          <%= form_for @subscriber, :url => signup_path do |f| %>
-              <% if @subscriber.errors.any? %>
-                  <% @subscriber.errors.full_messages.each do |msg| %>
-                      <li style='color:white'><%= msg %></li>
-                  <% end %>
-              <% end %>
-              <p>
-                <%= f.text_field :email, :placeholder => "Enter Your Email", :class=>"required email" %>
-              </p>
-              <p>
-                <%= text_field :place, "search", :placeholder => "What City Do You Live In?" %>
-                <%= f.hidden_field :location, :id=>"subscriber_location" %>
-                <%= f.hidden_field :place_json %>
-              </p>
-              <%= f.submit :value => "Subscribe", :class=>"btn" %>
-              <div class="success-message"></div>
-              <div class="error-message"></div>
-          <% end %>
+        <div class="sample_email span6">
+          <%= image_tag('email.jpg', :class=>"email_image") %>
         </div>
       </div>
     </div>
