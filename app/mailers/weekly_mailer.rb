@@ -1,4 +1,4 @@
-require 'JSON'
+require 'json'
 
 class WeeklyMailer < ActionMailer::Base
   default from: "no-reply@thelocalread.com"
