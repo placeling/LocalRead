@@ -7,6 +7,8 @@ LocalRead::Application.routes.draw do
   post "/", :to => 'home#signup', :as => :signup
   get "/signup", :to => 'home#dead_signup', :as => :thanks
   get "/confirmed", :to => "home#confirmed", :as => :confirmed
+  get "/unsubscribe", :to => "home#unsubscribe", :as => :unsubscribe
+  get "/resubscribe", :to => "home#resubscribe", :as => :resubscribe
 
   get "/vancouver", :to => 'home#city', :as => :city, :lat =>  "49.261226", :lng => "-123.1139268"
 

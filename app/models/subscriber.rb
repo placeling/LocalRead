@@ -27,9 +27,36 @@ class Subscriber
 
   field :location, :type => Array #meant to be home location, used at signup?
   field :place_json,    :type => String
+  field :unsubscribed, :type => Boolean, :default => false
+
+  field :ck, :type => String
 
   before_validation :dummy_password
   validates_presence_of :location, :message => "need to be selected from list"
+
+  before_save :add_cryptokey
+
+  index({ ck: 1 })
+
+  def city
+    "Vancouver"
+  end
+
+  def add_cryptokey
+    self.ck = SecureRandom.hex(30)
+  end
+
+  def self.find_by_crypto_key(key)
+    self.where(:ck => key).first
+  end
+
+  def self.ck
+    if self[:ck].nil?
+      self[:ck] = SecureRandom.hex(30)
+    end
+
+    return self[:ck]
+  end
 
   def dummy_password
     self.password = "dummypassword"
@@ -43,4 +70,7 @@ class Subscriber
     "#{self.location[0].to_f.round(3)},#{self.location[1].to_f.round(3)}"
   end
 
+  def weekly_email?
+    self.confirmed? && !self.unsubscribed
+  end
 end

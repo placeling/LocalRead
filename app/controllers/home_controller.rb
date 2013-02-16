@@ -34,6 +34,28 @@ class HomeController < ApplicationController
 
   end
 
+  def unsubscribe
+    @subscriber = Subscriber.find_by_crypto_key(params[:ck])
+
+    @subscriber.unsubscribed = true
+    @subscriber.save!
+
+    respond_to do |format|
+      format.html
+    end
+  end
+
+  def resubscribe
+    @subscriber = Subscriber.find_by_crypto_key(params[:ck])
+
+    @subscriber.unsubscribed = false
+    @subscriber.save!
+
+    respond_to do |format|
+      format.html {redirect_to confirmed_path}
+    end
+  end
+
   def confirmed
 
   end
