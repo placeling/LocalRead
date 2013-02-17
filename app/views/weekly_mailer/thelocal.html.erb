@@ -2,6 +2,7 @@
 <html>
 <head>
   <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+  <%= stylesheet_link_tag '/stylesheets/mail' %>
 </head>
 <body style="background-color: #FAF9F7;font-size: 14px;font-family: Helvetica,Arial,sans-serif;">
   <table width="100%" id="background" border="0" cellpadding="0" cellspacing="0">
@@ -9,7 +10,7 @@
       <table width="660" id="main" border="0" cellpadding="0" cellspacing="20">
         <tr style="margin: 5px;padding: 0px;">
           <td width="100%" colspan="3" style="background-color: #FAF9F7;font-size: 14px;font-family: Helvetica,Arial,sans-serif;">
-            <p class="right" style="margin: 5px;padding: 0px;float: right;"><a href="<%= root_url() %>"><img src="https://www.placeling.com/assets/logo.png"></a></p>
+            <p class="right" style="margin: 5px;padding: 0px;float: right;"></p>
           </td>
         </tr>
         <tr>
@@ -24,7 +25,7 @@
     </td></tr>
 
     <tr>
-      <td><%= link_to "Unsubscribe", unsubscribe_users_path(:ck => @subscriber.ck) %></td>
+      <td><%= link_to "Unsubscribe", unsubscribe_path(:ck => @subscriber.ck), :class=>"link" %></td>
     </tr>
   </table>
 </body>

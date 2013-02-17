@@ -1,4 +1,5 @@
 require 'json'
+require 'hashie'
 
 class WeeklyMailer < ActionMailer::Base
   default from: "no-reply@thelocalread.com"
@@ -13,7 +14,12 @@ class WeeklyMailer < ActionMailer::Base
         break
       end
 
-      instagrams.concat( Instagram.media_search( subscriber.location[0], subscriber.location[1], {:distance => 5000, :max_timestamp => instagrams.last.created_time.to_i, :min_timestamp => 1.week.ago.to_i, :count => 40 } ).data )
+      begin
+        instagrams.concat( Instagram.media_search( subscriber.location[0], subscriber.location[1], {:distance => 5000, :max_timestamp => instagrams.last.created_time.to_i, :min_timestamp => 1.week.ago.to_i, :count => 40 } ).data )
+      rescue Exception => e
+        Rails.logger.info( e )
+      end
+
     end
 
     instagrams.sort_by!{|instagram| instagram.likes['count'] }
@@ -21,7 +27,7 @@ class WeeklyMailer < ActionMailer::Base
 
     placed_instagrams = []
     instagrams.each do |instagram|
-      if !instagram.location.name.nil?
+      if !instagram.location.name.nil? && !placed_instagrams.include?( instagram )
         placed_instagrams << instagram
       end
     end
@@ -46,9 +52,9 @@ class WeeklyMailer < ActionMailer::Base
       end
     end
 
-    @instagrams = @instagrams.first(4)
+    @instagrams = @instagrams.slice( 6, 4 )
 
-    mail(:to => @subscriber.email, :subject => "The Local Read for #{Time.now.strftime("%B %d, %Y")}") do |format|
+    mail(:to => @subscriber.email, :subject => "The Local Read for #{@subscriber.city}") do |format|
       format.text { render 'thelocal' }
       format.html { render 'thelocal' }
     end
