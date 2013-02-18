@@ -43,6 +43,8 @@ gem 'vanity'
 
 gem "airbrake"
 
+gem 'httparty'
+
 group :test, :development do
   gem "quiet_assets", ">= 1.0.1"
 end
