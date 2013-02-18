@@ -6,11 +6,10 @@
 </head>
 <body>
     <div id="header">
-      LOCAL READ
-
+      <%= image_tag "tlr_title.png" %>
     </div>
 
-    <div id="headline" class="centered">
+    <div id="headline" class="centered title">
       This Week's Most Interesting Places In <span class="highlight"><%= @subscriber.city %></span>
     </div>
     <div class="section">
@@ -22,7 +21,7 @@
     </div>
     <div class="section">
       <div class="section_header">
-        This week's top Instagrams from <span class="highlight"><%= @subscriber.city %></span>
+        This week's top <span class="highlight">Instagrams</span> from <span class="highlight"><%= @subscriber.city %></span>
       </div>
       <div style="width:100%;min-height: <%= @instagrams.count > 4 ? "300px": "150px" %> ">
           <% @instagrams.each do |instagram| %>
@@ -37,8 +36,22 @@
     </div>
 
     <div class="centered">
-      <%= link_to "Unsubscribe", unsubscribe_path(:ck => @subscriber.ck), :class=>"link" %>
-      This service uses the Instagram™ API and is not endorsed or certified by Instagram or Instagram, Inc. All Instagram™ logos and trademarks displayed on this service are property of Instagram, Inc
+      <div style="text-align:center;font-weight: bold;font-size: 18px" class="title">
+        LIKE THESE PLACES?
+      </div>
+      <div style="text-align:center;font-size: 12px;color: rgb(154,209,197)">
+        Forward this email to a friend
+      </div>
+
+    </div>
+
+    <div class="centered">
+      <div class="fineprint">
+        <%= link_to "Unsubscribe", unsubscribe_path(:ck => @subscriber.ck), :class=>"link" %> from The LocalRead's <span class="highlight"><%= @subscriber.city %></span> updates
+      </div>
+      <div class="fineprint">
+        This service uses the Instagram™ API and is not endorsed or certified by Instagram or Instagram, Inc. All Instagram™ logos and trademarks displayed on this service are property of Instagram, Inc
+      </div>
     </div>
 </body>
 </html>

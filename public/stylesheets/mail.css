@@ -6,7 +6,7 @@ a {
 body {
     background-color:  rgb(245, 244, 228);
     font-size: 14px;
-    font-family: Helvetica,Arial,sans-serif;
+    font-family: "Century Gothic",Arial,sans-serif;
 }
 
 tr {
@@ -20,13 +20,21 @@ tr {
 
 .centered{
     width: 600px;
-    margin: 0px auto;
+    margin: 20px auto;
+}
+
+.fineprint{
+    font-size: 9px;
+}
+
+.title {
+    font-family: "avante garde",Arial,sans-serif;
 }
 
 .section{
     background-color: white;
     width: 600px;
-    margin: 10px auto;
+    margin: 20px auto;
     padding: 3px 20px;
     display: block;
 
@@ -42,10 +50,10 @@ tr {
     border-bottom: solid;
     border-bottom-color: lightgray;
     border-bottom-width: 1px;
+    margin-bottom: 10px;
 }
 
 .instagram {
-
     float:left;
 }
 
@@ -58,7 +66,7 @@ td {
 #header{
     width: 100%;
     text-align: center;
-    height: 30px;
+    height: 50px;
     background-color: white;
     border-bottom-style: solid;
     border-color: rgb(154,209,197);
