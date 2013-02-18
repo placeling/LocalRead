@@ -52,7 +52,7 @@ class WeeklyMailer < ActionMailer::Base
       end
     end
 
-    @instagrams = @instagrams.slice( 6, 4 )
+    @instagrams = @instagrams.first( 8 )
 
     mail(:to => @subscriber.email, :subject => "The Local Read for #{@subscriber.city}") do |format|
       format.text { render 'thelocal' }

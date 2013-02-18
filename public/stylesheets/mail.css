@@ -1,0 +1,66 @@
+
+a {
+
+}
+
+body {
+    background-color:  rgb(245, 244, 228);
+    font-size: 14px;
+    font-family: Helvetica,Arial,sans-serif;
+}
+
+tr {
+    margin: 5px;
+    padding: 0px;
+}
+
+.highlight{
+    color: rgb(238, 94, 48);
+}
+
+.centered{
+    width: 600px;
+    margin: 0px auto;
+}
+
+.section{
+    background-color: white;
+    width: 600px;
+    margin: 10px auto;
+    padding: 3px 20px;
+    display: block;
+
+    border-style: solid;
+    border-width: 1px;
+    border-color: lightgrey;
+    border-top-width: 5px;
+    border-top-color: rgb(154,209,197);
+
+}
+
+.section_header{
+    border-bottom: solid;
+    border-bottom-color: lightgray;
+    border-bottom-width: 1px;
+}
+
+.instagram {
+
+    float:left;
+}
+
+td {
+    background-color: rgb(245, 244, 228);
+    font-size: 14px;
+    font-family: Helvetica,Arial,sans-serif;
+}
+
+#header{
+    width: 100%;
+    text-align: center;
+    height: 30px;
+    background-color: white;
+    border-bottom-style: solid;
+    border-color: rgb(154,209,197);
+    border-width: 5px;
+}
