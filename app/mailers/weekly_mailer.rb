@@ -77,6 +77,7 @@ class WeeklyMailer < ActionMailer::Base
 
     @chatham_data = grab_place_data_for( @subscriber )
 
+    use_vanity_mailer nil
     mail(:to => @subscriber.email, :subject => "The Local Read for #{@subscriber.city}") do |format|
       format.text { render 'thelocal' }
       format.html { render 'thelocal' }
