@@ -57,7 +57,7 @@ class WeeklyMailer < ActionMailer::Base
     if chatham_data_raw.nil?
       response = HTTParty.get("#{APP_CONFIG['chatham_location']}/recommendations/nearby.json?lat=#{@subscriber.location[0]}&lng=#{@subscriber.location[1]}")
 
-      $redis.setex( "chathamdata"+subscriber.location_cache_key, 60*60, response.to_json )
+      $redis.setex( "chathamdata"+subscriber.location_cache_key, 60*2, response.to_json )
       chatham_data = response
     else
       chatham_data = JSON.parse( chatham_data_raw )

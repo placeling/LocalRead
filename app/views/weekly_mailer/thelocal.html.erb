@@ -19,17 +19,20 @@
             <span class="highlight"><%=  place['entries'].first['blogger']['title'] %> and <%= place['entries'].count-1  %> others</span> wrote about <span class="highlight"><%= place['name'] %></span>
           </div>
           <% place['entries'].each do |entry| %>
-            <div class="title"><%= entry['blogger']['title'] %></div>
+              <%=  render :partial => "entry", :locals=> {:content => entry['content'], :title => entry['title'], :url =>entry['url'] } %>
           <% end %>
         </div>
     <% end %>
 
-    <% if !@chatham_data['featured'].nil? %>
-        <% blogger = @chatham_data['featured'] %>
+    <% if blogger = @chatham_data['featured'] %>
         <div class="section" style="border-top-color: darkred;">
           <div class="section_header">
             Featured Blogger: <span class="highlight"><%=  blogger['title'] %></span>
           </div>
+          <% i=0 %>
+          <% blogger['entries'].first(3).each do |entry| %>
+              <%=  render :partial => "entry", :locals=> {:content => entry['content'], :title => entry['title'].html_safe, :url =>entry['url'] } %>
+          <% end %>
         </div>
     <% end %>
 
@@ -38,13 +41,19 @@
       <div class="section_header">
         This week's top <span class="highlight">Instagrams</span> from <span class="highlight"><%= @subscriber.city %></span>
       </div>
-      <div style="width:100%;min-height: <%= @instagrams.count > 4 ? "300px": "150px" %> ">
-          <% @instagrams.each do |instagram| %>
-            <div class="instagram">
+      <table cellpadding="0" cellspacing="0" style="width:100%;min-height: <%= @instagrams.count > 4 ? "300px": "150px" %> ">
+        <tr>
+          <% @instagrams.each_with_index do |instagram, i| %>
+            <td class="instagram">
               <%= link_to image_tag(instagram.images.thumbnail.url, :alt=>instagram.location.name), instagram.link %>
-            </div>
+            </td>
+              <% if i==3 %>
+                </tr>
+                <tr>
+              <% end %>
           <% end %>
-      </div>
+        </tr>
+      </table>
       <div style="text-align: right">
         <%= image_tag 'Instagram_Logo_Small.png', :height => '40' %>
       </div>
@@ -58,25 +67,12 @@
         </div>
         <div class="section" style="border-top-color: rgb(252,197,73);">
             <% river.each_with_index do |entry, i| %>
-              <div class="preview_area">
                 <div class="section_header">
                     <span class="highlight"><%= entry['blogger']['title'] %></span> wrote about
                   <span class="highlight"><%= entry['place']['name'] %></span>
                 </div>
 
-                <div class="full_preview">
-                  <% if image = get_entry_image( entry['content'] ) %>
-                      <div class="preview_image">
-                        <%= image_tag image['src']  %>
-                      </div>
-                  <% end %>
-                  <div class="preview_text">
-                    <%= extract_snippet( entry['content'] ) %><%= link_to "more", entry['url'] %>
-                  </div>
-
-                </div>
-                <div style="clear: both;"></div>
-              </div>
+                <%=  render :partial => "entry", :locals=> {:content => entry['content'], :title => entry['title'], :url =>entry['url'] } %>
             <% end %>
         </div>
     <% end %>

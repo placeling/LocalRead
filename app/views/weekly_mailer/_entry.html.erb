@@ -1,0 +1,15 @@
+<div class="preview_area">
+  <table class="full_preview">
+    <tr>
+        <% if image = get_entry_image( content ) %>
+            <td class="preview_image" style="vertical-align: top">
+              <%= image_tag image['src'], :height=>"75"  %>
+            </td>
+        <% end %>
+        <td class="preview_text">
+          <div class="title" style="font-size: 14px"><%= link_to title, url %></div>
+          <%= extract_snippet( content ) %><%= link_to "more", url %>
+        </td>
+    </tr>
+  </table>
+</div>
