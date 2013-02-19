@@ -57,20 +57,26 @@
           </div>
         </div>
         <div class="section" style="border-top-color: rgb(252,197,73);">
-            <% river.each do |entry| %>
+            <% river.each_with_index do |entry, i| %>
+              <div class="preview_area">
                 <div class="section_header">
                     <span class="highlight"><%= entry['blogger']['title'] %></span> wrote about
                   <span class="highlight"><%= entry['place']['name'] %></span>
                 </div>
+
                 <div class="full_preview">
                   <% if image = get_entry_image( entry['content'] ) %>
                       <div class="preview_image">
                         <%= image_tag image['src']  %>
                       </div>
                   <% end %>
-                  <%= extract_snippet( entry['content'] ) %><%= link_to "more", entry['url'] %>
+                  <div class="preview_text">
+                    <%= extract_snippet( entry['content'] ) %><%= link_to "more", entry['url'] %>
+                  </div>
 
                 </div>
+                <div style="clear: both;"></div>
+              </div>
             <% end %>
         </div>
     <% end %>

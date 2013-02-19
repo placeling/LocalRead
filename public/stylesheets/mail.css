@@ -1,6 +1,7 @@
 
 a {
 
+    text-decoration: none;
 }
 
 body {
@@ -33,12 +34,30 @@ tr {
     font-size: 18px
 }
 
+.preview_area{
+    background-color: rgb(237,245,239);
+    padding: 10px;
+    margin: 10px;
+}
+
 .full_preview{
     margin-bottom: 20px;
+    width:100%;
+    display: block;
+}
+
+.preview_image {
+    float: left;
+    margin-right: 10px;
 }
 
 .preview_image img{
     height: 75px;
+    border: 5px solid white;
+}
+
+.preview_text{
+    padding-left: 10px;
 }
 
 .section{
