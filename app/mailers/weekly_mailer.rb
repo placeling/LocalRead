@@ -4,6 +4,7 @@ require 'httparty'
 
 class WeeklyMailer < ActionMailer::Base
   default from: "no-reply@thelocalread.com"
+  add_template_helper(ApplicationHelper)
   include Resque::Mailer
 
 
@@ -52,14 +53,17 @@ class WeeklyMailer < ActionMailer::Base
   def grab_place_data_for( subscriber )
 
     chatham_data_raw = $redis.get( "chathamdata" + subscriber.location_cache_key )
+    chatham_data = nil
     if chatham_data_raw.nil?
       response = HTTParty.get("#{APP_CONFIG['chatham_location']}/recommendations/nearby.json?lat=#{@subscriber.location[0]}&lng=#{@subscriber.location[1]}")
 
-      $redis.setex( "chathamdata"+subscriber.location_cache_key, 60*2, response.to_json )
-      return response
+      $redis.setex( "chathamdata"+subscriber.location_cache_key, 60*60, response.to_json )
+      chatham_data = response
     else
-      return JSON.parse( chatham_data_raw )
+      chatham_data = JSON.parse( chatham_data_raw )
     end
+
+    return chatham_data
   end
 
 

@@ -33,6 +33,14 @@ tr {
     font-size: 18px
 }
 
+.full_preview{
+    margin-bottom: 20px;
+}
+
+.preview_image img{
+    height: 75px;
+}
+
 .section{
     background-color: white;
     width: 600px;

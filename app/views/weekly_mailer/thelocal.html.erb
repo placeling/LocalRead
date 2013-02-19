@@ -12,14 +12,29 @@
     <div id="headline" class="centered title">
       This Week's Most Interesting Places In <span class="highlight"><%= @subscriber.city %></span>
     </div>
-    <div class="section">
-      <div class="section_header">
-        Mufasa wrote about Pride rock
-      </div>
-      Everythign that the light touches
-      As down breaks
-    </div>
-    <div class="section">
+
+    <% @chatham_data['places'].each do |place| %>
+        <div class="section">
+          <div class="section_header">
+            <span class="highlight"><%=  place['entries'].first['blogger']['title'] %> and <%= place['entries'].count-1  %> others</span> wrote about <span class="highlight"><%= place['name'] %></span>
+          </div>
+          <% place['entries'].each do |entry| %>
+            <div class="title"><%= entry['blogger']['title'] %></div>
+          <% end %>
+        </div>
+    <% end %>
+
+    <% if !@chatham_data['featured'].nil? %>
+        <% blogger = @chatham_data['featured'] %>
+        <div class="section" style="border-top-color: darkred;">
+          <div class="section_header">
+            Featured Blogger: <span class="highlight"><%=  blogger['title'] %></span>
+          </div>
+        </div>
+    <% end %>
+
+
+    <div class="section" style="border-top-color: #1c5380;">
       <div class="section_header">
         This week's top <span class="highlight">Instagrams</span> from <span class="highlight"><%= @subscriber.city %></span>
       </div>
@@ -34,6 +49,31 @@
         <%= image_tag 'Instagram_Logo_Small.png', :height => '40' %>
       </div>
     </div>
+
+    <% if river = @chatham_data['river'] %>
+        <div class="centered">
+          <div style="text-align:center;" class="title">
+            PEOPLE ARE TALKING ABOUT
+          </div>
+        </div>
+        <div class="section" style="border-top-color: rgb(252,197,73);">
+            <% river.each do |entry| %>
+                <div class="section_header">
+                    <span class="highlight"><%= entry['blogger']['title'] %></span> wrote about
+                  <span class="highlight"><%= entry['place']['name'] %></span>
+                </div>
+                <div class="full_preview">
+                  <% if image = get_entry_image( entry['content'] ) %>
+                      <div class="preview_image">
+                        <%= image_tag image['src']  %>
+                      </div>
+                  <% end %>
+                  <%= extract_snippet( entry['content'] ) %><%= link_to "more", entry['url'] %>
+
+                </div>
+            <% end %>
+        </div>
+    <% end %>
 
     <div class="centered">
       <div style="text-align:center;" class="title">
