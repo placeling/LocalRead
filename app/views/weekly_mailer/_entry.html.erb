@@ -3,12 +3,12 @@
     <tr>
         <% if image = get_entry_image( content ) %>
             <td class="preview_image" style="vertical-align: top">
-              <%= image_tag image['src'], :height=>"75"  %>
+              <%= link_to image_tag(image['src'], :height=>"75"), url  %>
             </td>
         <% end %>
         <td class="preview_text">
           <div class="title" style="font-size: 14px"><%= link_to title, url, :class => "title_link" %></div>
-          <%= extract_snippet( content ) %><%= link_to "more", url %>
+          <%= extract_snippet( content ) %> &nbsp;<%= link_to "more", url %>
         </td>
     </tr>
   </table>
