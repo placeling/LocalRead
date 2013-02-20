@@ -37,6 +37,7 @@ class Subscriber
   before_save :add_cryptokey
 
   index({ ck: 1 })
+  index({ location: "2d" }, { min: -200, max: 200 })
 
   def city
     "Vancouver"

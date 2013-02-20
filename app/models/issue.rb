@@ -7,7 +7,7 @@ class Issue
   field :location, :type => Array
   field :mailed_to, :type => Integer, :default => 0
 
-  index location: "2d"
+  index({ location: "2d" }, { min: -200, max: 200 })
 
 
 end
