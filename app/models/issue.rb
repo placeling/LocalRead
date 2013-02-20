@@ -5,13 +5,9 @@ class Issue
 
   field :content, :type => Hash
   field :location, :type => Array
+  field :mailed_to, :type => Integer, :default => 0
 
-  index(
-      [
-          [:location, Mongo::GEO2D]
-      ], background: true
-
-  )
+  index location: "2d"
 
 
 end

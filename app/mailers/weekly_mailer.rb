@@ -63,9 +63,13 @@ class WeeklyMailer < ActionMailer::Base
       chatham_data = JSON.parse( chatham_data_raw )
     end
 
-    @instagrams = grab_instagrams_for( @subscriber )
+    instagrams = grab_instagrams_for( @subscriber )
 
-    @instagrams = @instagrams.first( 8 )
+    chatham_data['instagrams'] = []
+
+    instagrams.first( 8 ).each do |hashie|
+        chatham_data['instagrams'] << hashie.to_hash
+    end
 
     return chatham_data
   end
