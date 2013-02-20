@@ -95,25 +95,25 @@
               GET THIS EMAIL FROM A FRIEND?
             </div>
             <div style="text-align:center;font-size: 12px;color: rgb(154,209,197)">
-              <a href="http://www.thelocalread.com">Subscribe to Your City</a>
+              <a href="http://www.thelocalread.com/vancouver">Get Vancouver's Most Interesting Places In Your Inbox</a>
             </div>
-          </td>
-        </tr>
-        <tr>
-          <td colspan="2" style="text-align: center">
-            <br>
-            <%= link_to image_tag("twitter.png"), "http://clicktotweet.com/9TbZ4" %>
           </td>
         </tr>
       </table>
     </div>
 
+    <br>
     <div class="centered">
       <div class="fineprint">
-        <%= link_to "Unsubscribe", unsubscribe_path(:ck => @subscriber.ck), :class=>"link" %> from The LocalRead's <span class="highlight"><%= @subscriber.city %></span> updates
+        <%= link_to "Unsubscribe", unsubscribe_path(:ck => @subscriber.ck), :class=>"link" %> from The LocalRead's <%= @subscriber.city %> updates
       </div>
+      <br>
       <div class="fineprint">
         This service uses the Instagram™ API and is not endorsed or certified by Instagram or Instagram, Inc. All Instagram™ logos and trademarks displayed on this service are property of Instagram, Inc
+      </div>
+      <br>
+      <div class="fineprint">
+        &copy: Placeling (Internet Services) Inc. All rights reserved.
       </div>
     </div>
     <%= vanity_tracking_image(Vanity.context.vanity_identity, :open) %>
