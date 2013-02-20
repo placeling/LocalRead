@@ -19,7 +19,9 @@ class HomeController < ApplicationController
   end
 
   def signup
-    @subscriber = Subscriber.new( :email => params[:subscriber][:email], :location => params[:subscriber][:location].split(","), :place_json => params[:subscriber][:place_json] )
+    lat =  params[:subscriber][:location].split(",")[0].to_f
+    lng =  params[:subscriber][:location].split(",")[1].to_f
+    @subscriber = Subscriber.new( :email => params[:subscriber][:email], :location => [lat,lng], :place_json => params[:subscriber][:place_json] )
 
     if @subscriber.save
       track! :registration
