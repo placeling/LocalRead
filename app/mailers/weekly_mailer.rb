@@ -66,7 +66,7 @@ class WeeklyMailer < ActionMailer::Base
         chatham_data['instagrams'] << hashie.to_hash
       end
 
-      $redis.setex( "chathamdata"+subscriber.location_cache_key, 60*60, response.to_json )
+      $redis.setex( "chathamdata"+subscriber.location_cache_key, 60*60*12, response.to_json )
 
       Issue.create( location: subscriber.location, content: chatham_data)
 
