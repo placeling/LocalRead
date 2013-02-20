@@ -3,7 +3,7 @@
     <tr>
         <% if image = get_entry_image( content ) %>
             <td class="preview_image" style="vertical-align: top">
-              <%= link_to image_tag(image['src'], :height=>"75"), url  %>
+              <%= link_to image_tag(image, :height=>"75"), url  %>
             </td>
         <% end %>
         <td class="preview_text">

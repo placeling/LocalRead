@@ -16,7 +16,7 @@ class PictureUploader  < CarrierWave::Uploader::Base
   end
 
   version :thumb do
-    process :resize_to_fit => [200, 200]
+    process :resize_to_limit => [nil, 200]
   end
 
   # If don't include get strange things e.g., txt files can be uploaded and resize to > 1 GB. Kills server performance
