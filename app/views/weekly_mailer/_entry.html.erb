@@ -7,7 +7,7 @@
             </td>
         <% end %>
         <td class="preview_text">
-          <div class="title" style="font-size: 14px"><%= link_to title, url %></div>
+          <div class="title" style="font-size: 14px"><%= link_to title, url, :class => "title_link" %></div>
           <%= extract_snippet( content ) %><%= link_to "more", url %>
         </td>
     </tr>

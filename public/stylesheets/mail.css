@@ -1,9 +1,4 @@
 
-a {
-
-    text-decoration: none;
-}
-
 body {
     background-color:  rgb(245, 244, 228);
     font-size: 14px;
@@ -34,9 +29,9 @@ tr {
     font-size: 18px
 }
 
-.title a{
+.title_link{
     text-decoration: none;
-    color: black;
+    color: #000001;
 }
 
 .preview_area{
@@ -87,4 +82,8 @@ tr {
     border-bottom-style: solid;
     border-color: rgb(154,209,197);
     border-width: 5px;
+}
+
+a {
+    text-decoration: none;
 }
