@@ -56,20 +56,21 @@ class WeeklyMailer < ActionMailer::Base
     chatham_data = nil
     if chatham_data_raw.nil?
       response = HTTParty.get("#{APP_CONFIG['chatham_location']}/recommendations/nearby.json?lat=#{@subscriber.location[0]}&lng=#{@subscriber.location[1]}")
+      chatham_data = response
+
+      instagrams = grab_instagrams_for( @subscriber )
+
+      chatham_data['instagrams'] = []
+
+      instagrams.first( 8 ).each do |hashie|
+        chatham_data['instagrams'] << hashie.to_hash
+      end
 
       $redis.setex( "chathamdata"+subscriber.location_cache_key, 60*2, response.to_json )
-      chatham_data = response
     else
       chatham_data = JSON.parse( chatham_data_raw )
     end
 
-    instagrams = grab_instagrams_for( @subscriber )
-
-    chatham_data['instagrams'] = []
-
-    instagrams.first( 8 ).each do |hashie|
-        chatham_data['instagrams'] << hashie.to_hash
-    end
 
     return chatham_data
   end
