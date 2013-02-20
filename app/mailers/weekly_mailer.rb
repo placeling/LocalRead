@@ -83,7 +83,7 @@ class WeeklyMailer < ActionMailer::Base
 
 
     use_vanity_mailer nil
-    mail(:to => @subscriber.email, :subject => "The Local Read for #{@subscriber.city} #{Time.now}") do |format|
+    mail(:to => @subscriber.email, :subject => "The Local Read for #{@subscriber.city}") do |format|
       format.text { render 'thelocal' }
       format.html { render 'thelocal' }
     end
