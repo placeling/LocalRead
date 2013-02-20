@@ -63,6 +63,10 @@ class WeeklyMailer < ActionMailer::Base
       chatham_data = JSON.parse( chatham_data_raw )
     end
 
+    @instagrams = grab_instagrams_for( @subscriber )
+
+    @instagrams = @instagrams.first( 8 )
+
     return chatham_data
   end
 
@@ -71,11 +75,8 @@ class WeeklyMailer < ActionMailer::Base
   def thelocal( subscriber_id )
     @subscriber = Subscriber.find(subscriber_id)
 
-    @instagrams = grab_instagrams_for( @subscriber )
-
-    @instagrams = @instagrams.first( 8 )
-
     @chatham_data = grab_place_data_for( @subscriber )
+
 
     use_vanity_mailer nil
     mail(:to => @subscriber.email, :subject => "The Local Read for #{@subscriber.city}") do |format|

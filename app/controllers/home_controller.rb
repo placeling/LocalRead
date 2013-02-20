@@ -40,6 +40,8 @@ class HomeController < ApplicationController
     @subscriber.unsubscribed = true
     @subscriber.save!
 
+    track! :unsubscribe
+
     respond_to do |format|
       format.html
     end
