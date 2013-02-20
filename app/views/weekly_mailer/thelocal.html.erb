@@ -105,7 +105,7 @@
     <br>
     <div class="centered">
       <div class="fineprint">
-        <%= link_to "Unsubscribe", unsubscribe_path(:ck => @subscriber.ck), :class=>"link" %> from The LocalRead's <%= @subscriber.city %> updates
+        <%= link_to "Unsubscribe", unsubscribe_path(:ck => @subscriber.ck, :only_path => false), :class=>"link" %> from The LocalRead's <%= @subscriber.city %> updates
       </div>
       <br>
       <div class="fineprint">
@@ -113,7 +113,7 @@
       </div>
       <br>
       <div class="fineprint">
-        &copy: Placeling (Internet Services) Inc. All rights reserved.
+        &copy; Placeling (Internet Services) Inc. All rights reserved.
       </div>
     </div>
     <%= vanity_tracking_image(Vanity.context.vanity_identity, :open) %>
