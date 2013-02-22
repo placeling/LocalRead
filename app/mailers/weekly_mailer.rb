@@ -1,48 +1,61 @@
 require 'json'
 require 'hashie'
 require 'httparty'
+require 'shorten_url_interceptor'
 
 class WeeklyMailer < ActionMailer::Base
   default from: "The Local Read <no-reply@thelocalread.com>"
   add_template_helper(ApplicationHelper)
   include Resque::Mailer
+  #register_interceptor Shortener::ShortenUrlInterceptor.new
 
 
   def grab_instagrams_for( subscriber )
 
     @instagrams_raw = $redis.get( subscriber.location_cache_key )
     if @instagrams_raw.nil?
-      instagrams = Instagram.media_search( subscriber.location[0], subscriber.location[1], {:distance => 5000, :max_timestamp => 1.day.ago.to_i, :min_timestamp => 1.week.ago.to_i, :count => 40 } ).data
+      begin
+        instagrams = Instagram.media_search( subscriber.location[0], subscriber.location[1], {:distance => 5000, :max_timestamp => 1.day.ago.to_i, :min_timestamp => 1.week.ago.to_i, :count => 40 } ).data
 
-      5.times do
-        if instagrams.last.created_time.to_i < 1.week.ago.to_i
-          break
+        5.times do
+          if instagrams.last.created_time.to_i < 1.week.ago.to_i
+            break
+          end
+
+          begin
+            instagrams.concat( Instagram.media_search( subscriber.location[0], subscriber.location[1], {:distance => 5000, :max_timestamp => instagrams.last.created_time.to_i, :min_timestamp => 1.week.ago.to_i, :count => 40 } ).data )
+          rescue Exception => e
+            Rails.logger.info( e )
+          end
+
         end
 
-        begin
-          instagrams.concat( Instagram.media_search( subscriber.location[0], subscriber.location[1], {:distance => 5000, :max_timestamp => instagrams.last.created_time.to_i, :min_timestamp => 1.week.ago.to_i, :count => 40 } ).data )
-        rescue Exception => e
-          Rails.logger.info( e )
+        instagrams.sort_by!{|instagram| instagram.likes['count'] }
+        instagrams.reverse!
+
+        placed_instagrams = []
+        instagrams.each do |instagram|
+          if !instagram.location.name.nil? && !placed_instagrams.include?( instagram )
+            placed_instagrams << instagram
+          end
         end
 
+        $redis.setex( subscriber.location_cache_key, 60*60*24, placed_instagrams.to_json )
+      rescue
+        placed_instagrams = nil
       end
 
-      instagrams.sort_by!{|instagram| instagram.likes['count'] }
-      instagrams.reverse!
-
-      placed_instagrams = []
-      instagrams.each do |instagram|
-        if !instagram.location.name.nil? && !placed_instagrams.include?( instagram )
-          placed_instagrams << instagram
-        end
-      end
-
-      $redis.setex( subscriber.location_cache_key, 60*60*24, placed_instagrams.to_json )
 
       return placed_instagrams
     else
       instagrams = []
-      JSON.parse( @instagrams_raw ).each do |instagram|
+      begin
+        parsed_json = JSON.parse( @instagrams_raw )
+      rescue
+        return nil
+      end
+
+      parsed_json.each do |instagram|
         instagrams << Hashie::Mash.new( instagram )
       end
 
@@ -62,8 +75,10 @@ class WeeklyMailer < ActionMailer::Base
 
       chatham_data['instagrams'] = []
 
-      instagrams.first( 8 ).each do |hashie|
-        chatham_data['instagrams'] << hashie.to_hash
+      if !instagrams.nil?
+        instagrams.first( 8 ).each do |hashie|
+          chatham_data['instagrams'] << hashie.to_hash
+        end
       end
 
       $redis.setex( "chathamdata"+subscriber.location_cache_key, 60*60*12, response.to_json )
