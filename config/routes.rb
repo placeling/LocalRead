@@ -1,6 +1,10 @@
 require 'resque/server'
 
 LocalRead::Application.routes.draw do
+  get "issues/show"
+
+  get "issues/index"
+
   devise_for :subscribers,
              :controllers => { :confirmations => "subscribers/confirmations"}
 
