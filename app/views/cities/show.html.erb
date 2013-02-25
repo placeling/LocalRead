@@ -1,0 +1,12 @@
+
+
+
+<h1><%= @city.name %></h1>
+
+<ul>
+<% @city.issues.each do |issue| %>
+    <li><%= link_to issue.slug, city_issue_path(@city, issue) %></li>
+
+<% end %>
+
+</ul>

@@ -9,7 +9,7 @@
     </div>
 <% end %>
 
-<% if blogger = @chatham_data['featured'] %>
+<% if blogger = chatham_data['featured'] %>
     <div class="section" style="border-top-color: darkred;">
       <div class="section_header">
         Featured Blogger: <span class="highlight"><%=  blogger['title'] %></span>
@@ -22,7 +22,7 @@
 <% end %>
 
 
-<% if instagrams = @chatham_data['instagrams'] && !instagrams.nil? && instagrams.count > 0 %>
+<% if instagrams = chatham_data['instagrams'] && !instagrams.nil? && instagrams.count > 0 %>
     <div class="section" style="border-top-color: #1c5380;">
       <div class="section_header">
         This week's top <span class="highlight">Instagrams</span> from <span class="highlight"><%= @subscriber.city %></span>
@@ -46,7 +46,7 @@
     </div>
 <% end %>
 
-<% if river = @chatham_data['river'] %>
+<% if river = chatham_data['river'] %>
     <div class="centered">
       <div style="text-align:center;" class="title">
         PEOPLE ARE TALKING ABOUT

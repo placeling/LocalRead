@@ -23,6 +23,10 @@ LocalRead::Application.routes.draw do
     mount WeeklyMailer::Preview => 'mail_view'
   #end
 
+  resources :cities, :only => [:show] do
+    resources :issues
+  end
+
   mount Resque::Server, :at => "/resque"
 
   root :to => "home#index"

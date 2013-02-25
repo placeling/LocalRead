@@ -77,6 +77,9 @@ gem "twitter-bootstrap-rails"
 gem 'bson_ext'
 gem "mongo"
 gem "mongoid", ">= 3.0.15"
+gem 'mongoid_slug'
+gem "mongoid_rails_migrations", "~> 0.0.13"
+
 gem "rspec-rails", ">= 2.11.4", :group => [:development, :test]
 gem "database_cleaner", ">= 0.9.1", :group => :test
 gem "mongoid-rspec", ">= 1.5.5", :group => :test
