@@ -79,6 +79,7 @@ gem "mongo"
 gem "mongoid", ">= 3.0.15"
 gem 'mongoid_slug'
 gem "mongoid_rails_migrations", "~> 0.0.13"
+gem 'mongoid_token', '~> 1.1.0'
 
 gem "rspec-rails", ">= 2.11.4", :group => [:development, :test]
 gem "database_cleaner", ">= 0.9.1", :group => :test

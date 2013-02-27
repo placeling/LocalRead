@@ -2,6 +2,11 @@ require 'nokogiri'
 
 module ApplicationHelper
 
+  # generate a url from a url string
+  def short_url(url, owner=nil)
+    short_url = ShortenedUrl.generate(url, owner)
+    short_url ? url_for( shortener_path(:id => short_url.token, :only_path => false) ) : url
+  end
 
   def get_entry_image( content )
 
