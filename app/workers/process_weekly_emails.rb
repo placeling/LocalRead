@@ -164,17 +164,24 @@ class ProcessWeeklyEmails
 
   def self.perform()
 
-    if Rails.env.production?
-      Subscriber.where(:location => {"$near" => [49.263548,-123.114166] , '$maxDistance' => 0.1}).each do |subscriber|
-        if subscriber.weekly_email?
-          WeeklyMailer.thelocal( subscriber.id ).deliver
-        end
-      end
-    else
-      Subscriber.near(:location => {"$near" => [49.263548,-123.114166] , '$maxDistance' => 0.1}).each do |subscriber|
-        if subscriber.weekly_email?
+    city = City.first
+    sent_to = []
+
+    issue = Issue.where(:city => city, :created_at.gt =>6.days.ago).first
+
+    if issue.nil?
+      contents = ProcessWeeklyEmails.issueCreator( city )
+      issue = Issue.create!( :content => contents, :city => city)
+    end
+
+    Subscriber.where(:location => {"$near" => city.location , '$maxDistance' => 0.1}).each do |subscriber|
+      if subscriber.weekly_email? && !sent_to.include?( subscriber.email)
+        sent_to << subscriber.email
+        if Rails.env.production?
+          WeeklyMailer.thelocal( subscriber.id, issue.id ).deliver
+        else
           puts subscriber.email
-          WeeklyMailer.thelocal( subscriber.id )
+          WeeklyMailer.thelocal( subscriber.id, issue.id )
         end
       end
     end
