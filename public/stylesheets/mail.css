@@ -46,6 +46,9 @@ tr {
     width:100%;
 }
 
+.preview_image {
+    min-width: 75px;
+}
 
 .preview_image img{
     height: 75px;
