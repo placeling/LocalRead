@@ -85,47 +85,46 @@ class ProcessWeeklyEmails
       river << entry
     end
 
-    return {places: popular_places, featured: featured_blogger, river: @river, theme: @theme}
+    instagrams = self.grab_instagrams_for( city )
+
+    return {places: popular_places, featured: featured_blogger, river: @river, theme: @theme, instagrams: instagrams}
 
   end
 
 
 
-  def grab_instagrams_for( city )
+  def self.grab_instagrams_for( city )
 
-    @instagrams_raw = $redis.get( city.location_cache_key )
+    @instagrams_raw = $redis.get( city.location_cache_key)
     if @instagrams_raw.nil?
-      begin
-        instagrams = Instagram.media_search( city.location[0], city.location[1], {:distance => 5000, :max_timestamp => 1.day.ago.to_i, :min_timestamp => 1.week.ago.to_i, :count => 40 } ).data
+      instagrams = Instagram.media_search( city.location[0], city.location[1], {:distance => 5000, :max_timestamp => 1.day.ago.to_i, :min_timestamp => 1.week.ago.to_i, :count => 40 } ).data
 
-        5.times do
-          if instagrams.last.created_time.to_i < 1.week.ago.to_i
-            break
-          end
-
-          begin
-            instagrams.concat( Instagram.media_search( subscriber.location[0], subscriber.location[1], {:distance => 5000, :max_timestamp => instagrams.last.created_time.to_i, :min_timestamp => 1.week.ago.to_i, :count => 40 } ).data )
-          rescue Exception => e
-            Rails.logger.info( e )
-          end
-
+      5.times do
+        if instagrams.last.created_time.to_i < 1.week.ago.to_i
+          break
         end
 
-        instagrams.sort_by!{|instagram| instagram.likes['count'] }
-        instagrams.reverse!
-
-        placed_instagrams = []
-        instagrams.each do |instagram|
-          if !instagram.location.name.nil? && !placed_instagrams.include?( instagram )
-            placed_instagrams << instagram
-          end
+        begin
+          instagrams.concat( Instagram.media_search( subscriber.location[0], subscriber.location[1], {:distance => 5000, :max_timestamp => instagrams.last.created_time.to_i, :min_timestamp => 1.week.ago.to_i, :count => 40 } ).data )
+        rescue Exception => e
+          Rails.logger.info( e )
         end
 
-        $redis.setex( city.location_cache_key, 60*60*2, placed_instagrams.to_json )
-      rescue
-        placed_instagrams = nil
       end
 
+      instagrams.sort_by!{|instagram| instagram.likes['count'] }
+      instagrams.reverse!
+
+      placed_instagrams = []
+      instagrams.each do |instagram|
+        if !instagram.location.name.nil? && !placed_instagrams.include?( instagram )
+          placed_instagrams << instagram
+        end
+      end
+
+      if placed_instagrams.count > 4
+        $redis.setex( city.location_cache_key, 60*60*24, placed_instagrams.to_json )
+      end
 
       return placed_instagrams
     else
@@ -140,7 +139,7 @@ class ProcessWeeklyEmails
         instagrams << Hashie::Mash.new( instagram )
       end
 
-      return instagrams
+      return instagrams.first(8)
     end
   end
 
