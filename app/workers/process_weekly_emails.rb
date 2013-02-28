@@ -11,6 +11,7 @@ class ProcessWeeklyEmails
     chatham_data = Hashie::Mash.new( response )
     bloggers = chatham_data.bloggers
     potential_featured = []
+    named_bloggers = []
 
     bloggers.each do |blogger|
       if blogger.entries.count >= 3
@@ -19,6 +20,7 @@ class ProcessWeeklyEmails
     end
 
     featured_blogger = potential_featured.shuffle.first
+    named_bloggers << featured_blogger.id
     bloggers.delete( featured_blogger )
     city.featured_blogger_ids << featured_blogger.id
 
@@ -80,13 +82,25 @@ class ProcessWeeklyEmails
 
     popular_places = popular_places.first(2)
 
+    popular_places.each do |place|
+      named_bloggers << place['entries'].first['blogger']['_id']
+      place['entries'].shuffle!
+    end
+
     theme = nil
 
     #make the river
     river = []
-    places.first(10).each do |place|
+    places.each do |place|
+      if river.count > 9
+        break
+      end
       entry = place[1].first
-      river << entry
+
+      if !named_bloggers.include?( entry['blogger']['_id'] )
+        river << entry
+        named_bloggers << entry['blogger']['_id']
+      end
     end
 
     instagrams = self.grab_instagrams_for( city )
