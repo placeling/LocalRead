@@ -6,6 +6,8 @@ class IssuesController < ApplicationController
     if @city.nil?
       raise ActionController::RoutingError.new('Not Found')
     end
+    # BOO: HARD CODED LOCATION
+    @subscriber = Subscriber.new( :location => [@city.location[0], @city.location[1]], :place_json=>"{\"address_components\":[{\"long_name\":\"Vancouver\",\"short_name\":\"Vancouver\",\"types\":[\"locality\",\"political\"]}" )
     @issue = @city.issues.find params[:id]
     if @issue.nil?
       raise ActionController::RoutingError.new('Not Found')

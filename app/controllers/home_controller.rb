@@ -27,10 +27,12 @@ class HomeController < ApplicationController
       track! :registration
       respond_to do |format|
         format.html { redirect_to :action => "dead_signup" }
+        format.js
       end
     else
       respond_to do |format|
         format.html { render :action => "index" }
+        format.js
       end
     end
 
