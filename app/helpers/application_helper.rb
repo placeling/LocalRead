@@ -8,6 +8,13 @@ module ApplicationHelper
     short_url ? url_for( shortener_path(:id => short_url.token, :only_path => false) ) : url
   end
 
+  def tweet_link( issue_url, cityname )
+    text = CGI.escape("Check out this week's issue of The Local Read for #{cityname}: #{issue_url}")
+    url = CGI.escape( issue_url )
+
+    return "https://twitter.com/intent/tweet?text=#{text}&related=thelocalread"
+  end
+
   def get_entry_image( content )
 
     doc = Nokogiri::HTML( content )
