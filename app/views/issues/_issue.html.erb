@@ -1,7 +1,7 @@
 <% chatham_data['places'].each do |place| %>
     <div class="section">
       <div class="section_header">
-        <span class="highlight"><%=  place['entries'].first['blogger']['title'] %> and <%= place['entries'].count-1  %> other</span> wrote about <span class="highlight"><%= place['name'] %></span>
+        <span class="highlight"><%=  place['entries'].first['blogger']['title'] %> and <%= pluralize(place['entries'].count-1, 'other') %> </span> wrote about <span class="highlight"><%= place['name'] %></span>
       </div>
       <% place['entries'].each do |entry| %>
           <%=  render :partial => "issues/entry", :locals=> {:content => entry['content'], :title => entry['title'], :url =>entry['url'] } %>
