@@ -87,7 +87,7 @@ class ProcessWeeklyEmails
 
     instagrams = self.grab_instagrams_for( city )
 
-    return {places: popular_places, featured: featured_blogger, river: @river, theme: @theme, instagrams: instagrams}
+    return {places: popular_places, featured: featured_blogger, river: @river, theme: @theme, instagrams: instagrams.first(8)}
 
   end
 
@@ -139,7 +139,7 @@ class ProcessWeeklyEmails
         instagrams << Hashie::Mash.new( instagram )
       end
 
-      return instagrams.first(8)
+      return instagrams
     end
   end
 
