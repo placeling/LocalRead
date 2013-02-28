@@ -10,7 +10,11 @@ class Issue
   belongs_to :city
 
   slug :scope=> :city  do |cur_object|
-    Time.now.strftime("%Y-%m-%d")
+    if cur_object.created_at
+      cur_object.created_at.strftime("%Y-%m-%d")
+    else
+      Time.now.strftime("%Y-%m-%d")
+    end
   end
 
 
