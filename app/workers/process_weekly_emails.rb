@@ -66,6 +66,9 @@ class ProcessWeeklyEmails
     unless popular_places.count >= 2
       #third pass, get places written about by 2 bloggers
       places.each do |key, value|
+        if popular_places.count > 2
+          break #prevent it from sucking up too many
+        end
         place = value.first.place
         if value.count > 1
           place.entries = value
@@ -77,17 +80,18 @@ class ProcessWeeklyEmails
 
     popular_places = popular_places.first(2)
 
+    theme = nil
+
     #make the river
     river = []
     places.first(10).each do |place|
       entry = place[1].first
-      entry.place = place
       river << entry
     end
 
     instagrams = self.grab_instagrams_for( city )
 
-    return {places: popular_places, featured: featured_blogger, river: @river, theme: @theme, instagrams: instagrams.first(8)}
+    return {places: popular_places, featured: featured_blogger, river: river, theme: theme, instagrams: instagrams.first(8)}
 
   end
 
