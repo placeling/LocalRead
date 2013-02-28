@@ -27,9 +27,13 @@ class WeeklyMailer < ActionMailer::Base
 
       city = City.first
 
-      contents = ProcessWeeklyEmails.issueCreator( city )
+      issue = Issue.where(:city => city, :created_at.gt =>6.days.ago).first
 
-      issue = Issue.create!( :content => contents, :city => city)
+      if issue.nil?
+        contents = ProcessWeeklyEmails.issueCreator( city )
+        issue = Issue.create!( :content => contents, :city => city)
+      end
+
       WeeklyMailer.thelocal( user.id, issue.id )
     end
 
