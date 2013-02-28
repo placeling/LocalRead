@@ -1,0 +1,10 @@
+<div class="subscribe">
+  <%= form_for subscriber, :url => signup_path, :html => { :class => "issue_subscribe"}, :remote => true do |f| %>
+    <span class="sub_form_call_to_action">Get More <%= city.name %></span>
+    <%= f.text_field :email, :placeholder => "Enter Your Email", :class=>"required email" %>
+    <%= f.submit :value => "Subscribe", :class=>"submit" %>
+    
+    <%= f.hidden_field :location, :id=>"subscriber_location", :value => "#{city.location[0]},#{city.location[1]}" %>
+    <%= f.hidden_field :place_json %>
+  <% end %>  
+</div>

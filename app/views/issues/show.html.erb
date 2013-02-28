@@ -1,7 +1,22 @@
-<h1><%= @city.name %></h1>
-<h1><%= @issue.slug %></h1>
+<% content_for :head do %>
+  <%= stylesheet_link_tag    "application", :media => "all" %>
+<% end %>
 
+<% content_for :title do %>
+The Places People Are Talking About In <%= @city.name %>
+<% end %>
 
-<%=  render :partial => "issue", :locals => {:chatham_data => @issue.content} %>
+<div class="city_header">
+    <div><%= image_tag('tlr_title.png', :class=>"tlr_logo") %></div>
+    <h1 class="issue_headline"><span class="city_name"><%= @city.name %></span> Edition</h1>
+    <div class="issue_data">For the week of <%= @issue.slug %></div>
+</div>
+<%= render :partial => "subscribe", :locals => {:city => @city, :subscriber => @subscriber} %>
 
+<%= render :partial => "issue", :locals => {:chatham_data => @issue.content} %>
 
+<%= render :partial => "subscribe", :locals => {:city => @city, :subscriber => @subscriber} %>
+
+<div class="issue_footer">
+  &copy; Placeling (Internet Services) Inc. <%= mail_to "contact@placeling.com", "Get in touch", :encode => "javascript" %>
+</div>
