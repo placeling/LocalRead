@@ -1,7 +1,7 @@
 <% chatham_data['places'].each do |place| %>
     <div class="section">
       <div class="section_header">
-        <span class="highlight"><%=  place['entries'].first['blogger']['title'] %> and <%= place['entries'].count-1  %> others</span> wrote about <span class="highlight"><%= place['name'] %></span>
+        <span class="highlight"><%=  place['entries'].first['blogger']['title'] %> and <%= place['entries'].count-1  %> other</span> wrote about <span class="highlight"><%= place['name'] %></span>
       </div>
       <% place['entries'].each do |entry| %>
           <%=  render :partial => "issues/entry", :locals=> {:content => entry['content'], :title => entry['title'], :url =>entry['url'] } %>
@@ -63,26 +63,3 @@
       <% end %>
     </div>
 <% end %>
-
-<div class="centered">
-  <table style="width:100%">
-    <tr>
-      <td>
-        <div style="text-align:center;" class="title">
-          LIKE THESE PLACES?
-        </div>
-        <div style="text-align:center;font-size: 12px;color: rgb(154,209,197)">
-          Forward this email to a friend
-        </div>
-      </td>
-      <td>
-        <div style="text-align:center;" class="title">
-          DID A FRIEND SEND YOU THIS?
-        </div>
-        <div style="text-align:center;font-size: 12px;color: rgb(154,209,197)">
-          <a href="http://www.thelocalread.com/vancouver">Get Vancouver's Most Interesting Places In Your Inbox</a>
-        </div>
-      </td>
-    </tr>
-  </table>
-</div>

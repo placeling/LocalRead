@@ -6,6 +6,7 @@ class City
   field :location, :type => Array
   field :twitter_username, :type => String
   field :subreddit, :type => String
+  field :featured_blogger_ids, :type => Array, :default => []
 
   slug :name, :index => true
 
@@ -19,6 +20,10 @@ class City
 
   def self.forgiving_find( city_id    )
     City.find( city_id )
+  end
+
+  def location_cache_key
+    "#{self.location[0].to_f.round(3)},#{self.location[1].to_f.round(3)}"
   end
 
 end
