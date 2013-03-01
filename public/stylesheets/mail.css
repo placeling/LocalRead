@@ -48,6 +48,7 @@ tr {
 
 .preview_image {
     min-width: 75px;
+    padding-right: 10px;
 }
 
 .preview_image img{
