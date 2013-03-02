@@ -5,6 +5,9 @@ class City
   field :name, :type => String
   field :location, :type => Array
   field :twitter_username, :type => String
+  field :twitter_access_token, :type => String
+  field :twitter_access_secret, :type => String
+
   field :subreddit, :type => String
   field :featured_blogger_ids, :type => Array, :default => []
 
