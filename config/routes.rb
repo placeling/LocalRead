@@ -30,6 +30,10 @@ LocalRead::Application.routes.draw do
     resources :issues
   end
 
+  match 'auth/:provider/callback', to: 'sessions#create'
+  match 'auth/failure', to: redirect('/')
+  match 'signout', to: 'sessions#destroy', as: 'signout'
+
   mount Resque::Server, :at => "/resque"
 
   root :to => "home#index"
