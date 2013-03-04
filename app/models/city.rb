@@ -29,4 +29,8 @@ class City
     "#{self.location[0].to_f.round(3)},#{self.location[1].to_f.round(3)}"
   end
 
+  def city_queue_key
+    "#{self.slug}_tweetqueue"
+  end
+
 end
