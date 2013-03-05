@@ -34,7 +34,12 @@ class CityPostTweet
 
           link = ApplicationHelper.short_url( entry[0] )
 
-          text = "#{blogger} wrote about #{placename}: #{link}"
+          if entry[4].nil? || entry[4] == ""
+            text = "#{blogger} wrote about #{placename}: #{link} #yvr"
+          else
+            text = "#{blogger} wrote about #{placename} (#{entry[4]}): #{link} #yvr"
+          end
+
 
           puts text
 
