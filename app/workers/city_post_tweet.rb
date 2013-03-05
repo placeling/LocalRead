@@ -1,11 +1,7 @@
-require "#{Rails.root}/app/helpers/application_helper"
+class CityPostTweet
+  @queue = :twitter
 
-namespace "twitter" do
-  include ApplicationHelper
-
-  desc "Checks queues and posts message for each city twitter "
-  task :post => :environment do
-
+  def self.perform()
     City.each do |city|
       if city.twitter_access_token
         entry = $redis.lpop( city.city_queue_key )
@@ -41,8 +37,5 @@ namespace "twitter" do
 
       end
     end
-
   end
-
-
 end
