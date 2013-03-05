@@ -8,6 +8,8 @@ class City
   field :twitter_access_token, :type => String
   field :twitter_access_secret, :type => String
 
+  field :tweeted_links, type: Array, default: []
+
   field :subreddit, :type => String
   field :featured_blogger_ids, :type => Array, :default => []
 

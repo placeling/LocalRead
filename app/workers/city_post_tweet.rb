@@ -5,7 +5,10 @@ class CityPostTweet
   def self.perform()
     City.each do |city|
       if city.twitter_access_token
-        entry = $redis.lpop( city.city_queue_key )
+
+        begin
+          entry = $redis.lpop( city.city_queue_key )
+        end while city.tweeted_links.include?( entry[0] )
 
         unless entry.nil?
           entry = JSON.parse( entry )
@@ -34,6 +37,9 @@ class CityPostTweet
           text = "#{blogger} wrote about #{placename}: #{link}"
 
           puts text
+
+          city.tweeted_links << entry[0]
+          city.save
 
           if Rails.env.production?
             twitter_client.update( text )
