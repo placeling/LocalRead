@@ -32,6 +32,8 @@ class CityPostTweet
 
           text = "#{blogger} wrote about #{placename}: #{link}"
 
+          puts text
+
           twitter_client.update( text )
         end
 
