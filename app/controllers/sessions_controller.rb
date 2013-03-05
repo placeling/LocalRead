@@ -1,8 +1,15 @@
 class SessionsController < ApplicationController
   def create
-    user = User.from_omniauth(env["omniauth.auth"])
-    session[:user_id] = user.id
-    redirect_to root_url, notice: "Signed in!"
+    user = env["omniauth.auth"]
+    cred = user['credentials']
+
+    twitter_name = user['info']['nickname'].downcase
+    city = City.where( :twitter_username => twitter_name ).first
+    city.twitter_access_token = cred['token']
+    city.twitter_access_secret = cred['secret']
+    city.save
+
+    redirect_to root_url, notice: "Update Twitter Credentials for #{twitter_name}"
   end
 
   def destroy
