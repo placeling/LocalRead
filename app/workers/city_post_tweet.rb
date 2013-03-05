@@ -1,4 +1,5 @@
 class CityPostTweet
+  include ApplicationHelper
   @queue = :twitter
 
   def self.perform()
@@ -28,13 +29,15 @@ class CityPostTweet
             placename = entry[2]
           end
 
-          link = short_url( entry[0] )
+          link = ApplicationHelper.short_url( entry[0] )
 
           text = "#{blogger} wrote about #{placename}: #{link}"
 
           puts text
 
-          twitter_client.update( text )
+          if Rails.env.production?
+            twitter_client.update( text )
+          end
         end
 
       end

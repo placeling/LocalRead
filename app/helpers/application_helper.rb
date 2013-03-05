@@ -2,7 +2,7 @@ require 'nokogiri'
 
 module ApplicationHelper
 
-  def get_hostname
+  def self.get_hostname
     if ActionMailer::Base.default_url_options[:port] && ActionMailer::Base.default_url_options[:port].to_s != "80"
       "#{ActionMailer::Base.default_url_options[:host]}:#{ActionMailer::Base.default_url_options[:port]}"
     else
@@ -10,10 +10,14 @@ module ApplicationHelper
     end
   end
 
-  # generate a url from a url string
-  def short_url(url, owner=nil)
+  def self.short_url(url, owner=nil)
     short_url = ShortenedUrl.generate(url, owner)
     short_url ? Rails.application.routes.url_helpers.shortener_path(:id => short_url.token, :host => self.get_hostname, :only_path => false ) : url
+  end
+
+  # generate a url from a url string
+  def short_url(url, owner=nil)
+    ApplicationHelper.short_url( url, owner )
   end
 
   def tweet_link( issue_url, cityname )
