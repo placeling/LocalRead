@@ -10,7 +10,8 @@
 
         function FacebookInviteFriends() {
             FB.ui({ method: 'apprequests',
-                message: 'Subscribe to The Local Read for writings about places near you.'});
+                message: 'Subscribe to The Local Read for writings about places near you.'
+               });
         }
         <% if @invite %>
             FacebookInviteFriends();

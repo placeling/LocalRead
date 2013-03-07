@@ -3,6 +3,7 @@ class CanvasController < ApplicationController
 
     if params['error'] == "access_denied"
       redirect_to '/'
+      return
     else
       if params['signed_request']
         @oauth = Koala::Facebook::OAuth.new(APP_CONFIG['facebook_app_id'], APP_CONFIG['facebook_app_secret'], "/auth/facebook/callback")
@@ -25,6 +26,9 @@ class CanvasController < ApplicationController
         else
           @subscriber = Subscriber.new( :email => email, :location => [49.261226, -123.1139268], :facebook_json => profile.to_json, :place_json=>"{\"address_components\":[{\"long_name\":\"Vancouver\",\"short_name\":\"Vancouver\",\"types\":[\"locality\",\"political\"]}" )
         end
+      else
+        redirect_to 'https://www.facebook.com/dialog/oauth?client_id=515666301817401&scope=email&redirect_uri=https://apps.facebook.com/thelocalread/'
+        return
       end
 
       respond_to do |format|
