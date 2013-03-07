@@ -33,7 +33,7 @@
     You get them in one weekly email.
   </p>
 </div>
-<% if @subscriber && !@subscriber.new_record? %>
+<% if (@subscriber && !@subscriber.new_record?) || @invite %>
     <%= button_to "Invite Your Friends", nil, { :style => "width:190px", :class=>"btn", :onclick => "FacebookInviteFriends()"} %>
 <% elsif @subscriber %>
     <%= form_for @subscriber, :url => signup_path do |f| %>
