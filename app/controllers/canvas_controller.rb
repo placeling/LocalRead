@@ -11,9 +11,6 @@ class CanvasController < ApplicationController
         @info = @oauth.parse_signed_request( params['signed_request'] )
 
         if @info['oauth_token'].nil?
-          redirect_to 'https://www.facebook.com/dialog/oauth?client_id=515666301817401&scope=email&redirect_uri=https://apps.facebook.com/thelocalread/'
-          return
-        else
           graph = Koala::Facebook::API.new( @info['oauth_token'] )
           profile = graph.get_object("me")
           email = profile['email']
@@ -23,12 +20,9 @@ class CanvasController < ApplicationController
 
         if !@subscriber.nil?
           @invite = true
-        else
+        elsif email
           @subscriber = Subscriber.new( :email => email, :location => [49.261226, -123.1139268], :facebook_json => profile.to_json, :place_json=>"{\"address_components\":[{\"long_name\":\"Vancouver\",\"short_name\":\"Vancouver\",\"types\":[\"locality\",\"political\"]}" )
         end
-      else
-        redirect_to 'https://www.facebook.com/dialog/oauth?client_id=515666301817401&scope=email&redirect_uri=https://apps.facebook.com/thelocalread/'
-        return
       end
 
       respond_to do |format|

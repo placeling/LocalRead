@@ -25,9 +25,9 @@
 <div class="city_header" style="text-align: center">
   <div><%= image_tag('tlr_title.png', :class=>"tlr_logo") %></div>
 </div>
-<% if @invite %>
+<% if !@subscriber.new_record? %>
     <%= button_to "Invite Your Friends", nil, { :style => "width:190px", :class=>"btn", :onclick => "FacebookInviteFriends()"} %>
-<% else %>
+<% elsif @subscriber %>
     <div>
       <div>
         We follow Vancouver's best blogs to find the places that people are talking about.
@@ -54,4 +54,6 @@
         <div class="success-message"></div>
         <div class="error-message"></div>
     <% end %>
+<% else %>
+    <META HTTP-EQUIV="refresh" CONTENT="0;URL=https://www.facebook.com/dialog/oauth?client_id=515666301817401&scope=email&redirect_uri=https://apps.facebook.com/thelocalread/">
 <% end %>
