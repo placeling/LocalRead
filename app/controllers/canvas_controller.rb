@@ -10,7 +10,7 @@ class CanvasController < ApplicationController
 
         @info = @oauth.parse_signed_request( params['signed_request'] )
 
-        if @info['oauth_token'].nil?
+        if !@info['oauth_token'].nil?
           graph = Koala::Facebook::API.new( @info['oauth_token'] )
           profile = graph.get_object("me")
           email = profile['email']
