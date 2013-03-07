@@ -26,12 +26,12 @@
   <div><%= image_tag('tlr_title.png', :class=>"tlr_logo") %></div>
 </div>
 <div>
-  <div>
+  <p>
     We follow Vancouver's best blogs to find the places that people are talking about.
-  </div>
-  <div>
+  </p>
+  <p>
     You get them in one weekly email.
-  </div>
+  </p>
 </div>
 <% if @subscriber && !@subscriber.new_record? %>
     <%= button_to "Invite Your Friends", nil, { :style => "width:190px", :class=>"btn", :onclick => "FacebookInviteFriends()"} %>
