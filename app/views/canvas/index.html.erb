@@ -55,5 +55,7 @@
         <div class="error-message"></div>
     <% end %>
 <% else %>
-    <META HTTP-EQUIV="refresh" CONTENT="0;URL=https://www.facebook.com/dialog/oauth?client_id=515666301817401&scope=email&redirect_uri=https://apps.facebook.com/thelocalread/">
+    <script type='text/javascript'>
+        top.location.href = 'https://www.facebook.com/dialog/oauth?client_id=515666301817401&scope=email&redirect_uri=https://apps.facebook.com/thelocalread';
+    </script>
 <% end %>
