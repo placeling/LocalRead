@@ -8,8 +8,7 @@
         });
 
 
-        function FacebookInviteFriends()
-        {
+        function FacebookInviteFriends() {
             FB.ui({ method: 'apprequests',
                 message: 'Subscribe to The Local Read for writings about places near you.'});
         }
@@ -22,8 +21,36 @@
 
 <div id="fb-root"></div>
 
-
-
-<a href='#' onClick=""> INVITE YOUR FACEBOOK FRIENDS</a>
-
-Welcome to the local read!
+<div class="city_header" style="text-align: center">
+  <div><%= image_tag('tlr_title.png', :class=>"tlr_logo") %></div>
+</div>
+<% if @invite %>
+    <a href='#' onClick="FacebookInviteFriends()"> INVITE YOUR FACEBOOK FRIENDS</a>
+<% else %>
+    <div>
+      <div>
+        We follow Vancouver's best blogs to find the places that people are talking about.
+      </div>
+      <div>
+        You get them in one weekly email.
+      </div>
+    </div>
+    <%= form_for @subscriber, :url => signup_path do |f| %>
+        <% if @subscriber.errors.any? %>
+            <% @subscriber.errors.full_messages.each do |msg| %>
+                <li style='color:white'><%= msg %></li>
+            <% end %>
+        <% end %>
+        <p>
+          <%= f.hidden_field :email  %>
+        </p>
+        <p>
+          <%= f.hidden_field :location, :id=>"subscriber_location", :value => "#{@subscriber.location[0]},#{@subscriber.location[1]}" %>
+          <%= f.hidden_field :place_json %>
+          <%= f.hidden_field :facebook_json %>
+        </p>
+        <%= f.submit :value => "Subscribe", :class=>"btn" %>
+        <div class="success-message"></div>
+        <div class="error-message"></div>
+    <% end %>
+<% end %>

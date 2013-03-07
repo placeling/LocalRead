@@ -30,6 +30,7 @@ class Subscriber
   field :location, :type => Array #meant to be home location, used at signup?
   field :place_json,    :type => String
   field :unsubscribed, :type => Boolean, :default => false
+  field :facebook_json
 
   field :ck, :type => String
 
