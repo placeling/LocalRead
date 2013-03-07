@@ -34,6 +34,12 @@ module ApplicationHelper
     hosted_image = nil
 
     doc.css('img').each do |image|
+      uri = URI(image['src'])
+
+      if uri.host == "www.urbanspoon.com"
+        next #special case, these give 403 errors
+      end
+
       if !(image['width'] && image['width'].to_i < 200)
 
         hosted_image = HostedImage.where(:url => image['src']).first
