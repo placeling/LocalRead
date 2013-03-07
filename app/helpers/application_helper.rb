@@ -41,10 +41,10 @@ module ApplicationHelper
         if hosted_image.nil?
           hosted_image = HostedImage.new(:url => image['src'])
           hosted_image.remote_image_url = image['src']
-          hosted_image.save!
+          if hosted_image.save
+            break
+          end
         end
-
-        break
       end
     end
 
