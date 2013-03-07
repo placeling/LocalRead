@@ -25,7 +25,7 @@
 <div class="city_header" style="text-align: center">
   <div><%= image_tag('tlr_title.png', :class=>"tlr_logo") %></div>
 </div>
-<% if !@subscriber.new_record? %>
+<% if @subscriber && !@subscriber.new_record? %>
     <%= button_to "Invite Your Friends", nil, { :style => "width:190px", :class=>"btn", :onclick => "FacebookInviteFriends()"} %>
 <% elsif @subscriber %>
     <div>
