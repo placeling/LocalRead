@@ -12,6 +12,7 @@ LocalRead::Application.routes.draw do
   post "/canvas/", :to => 'canvas#index', :as => :canvas
   get "/canvas/", :to => 'canvas#index', :as => :canvas
   post "/canvas/invite", :to =>'canvas#invite', :as => :fb_invite
+  get "/canvas/invite", :to =>'canvas#invite', :as => :fb_invite
 
   get "/signup", :to => 'home#dead_signup', :as => :thanks
   get "/confirmed", :to => "home#confirmed", :as => :confirmed
