@@ -1,0 +1,29 @@
+<% content_for :javascript do %>
+    <script type='text/javascript'>
+        FB.init({
+            appId:<%= APP_CONFIG['facebook_app_id'] %>,
+            cookie:true,
+            status:true,
+            xfbml:true
+        });
+
+
+        function FacebookInviteFriends()
+        {
+            FB.ui({ method: 'apprequests',
+                message: 'Subscribe to The Local Read for writings about places near you.'});
+        }
+        <% if @invite %>
+            FacebookInviteFriends();
+        <% end %>
+    </script>
+<% end %>
+
+
+<div id="fb-root"></div>
+
+
+
+<a href='#' onClick=""> INVITE YOUR FACEBOOK FRIENDS</a>
+
+Welcome to the local read!

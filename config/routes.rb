@@ -9,6 +9,10 @@ LocalRead::Application.routes.draw do
              :controllers => { :confirmations => "subscribers/confirmations"}
 
   post "/", :to => 'home#signup', :as => :signup
+  post "/canvas/", :to => 'canvas#index', :as => :canvas
+  get "/canvas/", :to => 'canvas#index', :as => :canvas
+  post "/canvas/invite", :to =>'canvas#invite', :as => :fb_invite
+
   get "/signup", :to => 'home#dead_signup', :as => :thanks
   get "/confirmed", :to => "home#confirmed", :as => :confirmed
   get "/unsubscribe", :to => "home#unsubscribe", :as => :unsubscribe

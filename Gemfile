@@ -26,7 +26,9 @@ gem 'jquery-rails'
 # gem 'jbuilder'
 
 gem 'omniauth-twitter'
+gem 'omniauth-facebook'
 gem 'twitter'
+gem 'koala'
 
 # Use unicorn as the app server
 # gem 'unicorn'
