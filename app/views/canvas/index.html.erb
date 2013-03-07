@@ -12,6 +12,8 @@
             FB.ui({ method: 'apprequests',
                 message: 'Subscribe to The Local Read for a weekly email of the best places in Vancouver.'
                });
+
+            return false;
         }
         <% if @invite %>
             FacebookInviteFriends();
@@ -34,7 +36,7 @@
   </p>
 </div>
 <% if (@subscriber && !@subscriber.new_record?) || @invite %>
-    <%= button_to "Invite Your Friends", nil, { :style => "width:190px", :class=>"btn", :onclick => "FacebookInviteFriends()"} %>
+    <button type='button' style="width:190px" class="btn" onclick="FacebookInviteFriends()">Invite Your Friends</button>
 <% elsif @subscriber %>
     <%= form_for @subscriber, :url => signup_path do |f| %>
         <% if @subscriber.errors.any? %>
