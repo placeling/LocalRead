@@ -1,7 +1,7 @@
 require 'shorten_url_interceptor'
 
 class WeeklyMailer < ActionMailer::Base
-  default from: "The Local Read <no-reply@thelocalread.com>"
+  default from: "The Local Read <contact@placeling.com>"
   add_template_helper(ApplicationHelper)
   include Resque::Mailer
 
