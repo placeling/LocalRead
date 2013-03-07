@@ -9,9 +9,14 @@ class CanvasController < ApplicationController
 
         @info = @oauth.parse_signed_request( params['signed_request'] )
 
-        graph = Koala::Facebook::API.new( @info['oauth_token'] )
-        profile = graph.get_object("me")
-        email = profile['email']
+        if @info['oauth_token'].nil?
+          redirect_to 'https://www.facebook.com/dialog/oauth?client_id=515666301817401&scope=email&redirect_uri=https://apps.facebook.com/thelocalread/'
+          return
+        else
+          graph = Koala::Facebook::API.new( @info['oauth_token'] )
+          profile = graph.get_object("me")
+          email = profile['email']
+        end
 
         @subscriber = Subscriber.where(:email => email).first
 
