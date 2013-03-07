@@ -10,7 +10,7 @@
 
         function FacebookInviteFriends() {
             FB.ui({ method: 'apprequests',
-                message: 'Subscribe to The Local Read for writings about places near you.'
+                message: 'Subscribe to The Local Read for a weekly email of the best places in Vancouver.'
                });
         }
         <% if @invite %>
@@ -25,17 +25,17 @@
 <div class="city_header" style="text-align: center">
   <div><%= image_tag('tlr_title.png', :class=>"tlr_logo") %></div>
 </div>
+<div>
+  <div>
+    We follow Vancouver's best blogs to find the places that people are talking about.
+  </div>
+  <div>
+    You get them in one weekly email.
+  </div>
+</div>
 <% if @subscriber && !@subscriber.new_record? %>
     <%= button_to "Invite Your Friends", nil, { :style => "width:190px", :class=>"btn", :onclick => "FacebookInviteFriends()"} %>
 <% elsif @subscriber %>
-    <div>
-      <div>
-        We follow Vancouver's best blogs to find the places that people are talking about.
-      </div>
-      <div>
-        You get them in one weekly email.
-      </div>
-    </div>
     <%= form_for @subscriber, :url => signup_path do |f| %>
         <% if @subscriber.errors.any? %>
             <% @subscriber.errors.full_messages.each do |msg| %>

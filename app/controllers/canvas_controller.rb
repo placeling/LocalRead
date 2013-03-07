@@ -18,9 +18,7 @@ class CanvasController < ApplicationController
 
         @subscriber = Subscriber.where(:email => email).first
 
-        if !@subscriber.nil?
-          @invite = true
-        elsif email
+        if @subscriber.nil? && email
           @subscriber = Subscriber.new( :email => email, :location => [49.261226, -123.1139268], :facebook_json => profile.to_json, :place_json=>"{\"address_components\":[{\"long_name\":\"Vancouver\",\"short_name\":\"Vancouver\",\"types\":[\"locality\",\"political\"]}" )
         end
       end
