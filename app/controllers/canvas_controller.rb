@@ -15,10 +15,10 @@ class CanvasController < ApplicationController
 
         @subscriber = Subscriber.where(:email => email).first
 
-        if false #!@subscriber.nil?
+        if !@subscriber.nil?
           @invite = true
         else
-          @subscriber = Subscriber.new( :location => [49.261226, -123.1139268], :facebook_json => profile.to_json, :place_json=>"{\"address_components\":[{\"long_name\":\"Vancouver\",\"short_name\":\"Vancouver\",\"types\":[\"locality\",\"political\"]}" )
+          @subscriber = Subscriber.new( :email => email, :location => [49.261226, -123.1139268], :facebook_json => profile.to_json, :place_json=>"{\"address_components\":[{\"long_name\":\"Vancouver\",\"short_name\":\"Vancouver\",\"types\":[\"locality\",\"political\"]}" )
         end
       end
 
