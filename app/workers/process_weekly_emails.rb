@@ -141,7 +141,7 @@ class ProcessWeeklyEmails
       end
 
       if placed_instagrams.count > 4
-        $redis.setex( city.location_cache_key, 60*60*24, placed_instagrams.to_json )
+        $redis.setex( city.location_cache_key, 60*60*1, placed_instagrams.to_json )
       end
 
       return placed_instagrams
