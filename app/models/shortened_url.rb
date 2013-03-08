@@ -42,9 +42,9 @@ class ShortenedUrl
   end
 
   # return shortened url on success, nil on failure
-  def self.generate(orig_url, owner=nil)
+  def self.generate(orig_url, twitter=false)
     begin
-      generate!(orig_url, owner)
+      generate!(orig_url, twitter)
     rescue
       nil
     end
