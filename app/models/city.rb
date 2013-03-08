@@ -7,6 +7,7 @@ class City
   field :twitter_username, :type => String
   field :twitter_access_token, :type => String
   field :twitter_access_secret, :type => String
+  field :twitter_most_recent, :type => DateTime, :default => 3.days.ago
 
   field :tweeted_links, type: Array, default: []
 
