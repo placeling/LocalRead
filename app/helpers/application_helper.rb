@@ -10,14 +10,14 @@ module ApplicationHelper
     end
   end
 
-  def self.short_url(url, owner=nil)
-    short_url = ShortenedUrl.generate(url, owner)
+  def self.short_url(url, twitter=false)
+    short_url = ShortenedUrl.generate(url, twitter)
     short_url ? Rails.application.routes.url_helpers.shortener_path(:id => short_url.token, :host => self.get_hostname, :only_path => false ) : url
   end
 
   # generate a url from a url string
-  def short_url(url, owner=nil)
-    ApplicationHelper.short_url( url, owner )
+  def short_url(url, twitter=false)
+    ApplicationHelper.short_url( url, twitter )
   end
 
   def tweet_link( issue_url, cityname )

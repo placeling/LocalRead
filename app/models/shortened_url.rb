@@ -5,6 +5,7 @@ class ShortenedUrl
 
   field :url, type: String
   field :use_count, type: Integer, default: 0
+  field :twitter, type: Boolean, default: false
 
   index ({url:1})
 
@@ -25,21 +26,18 @@ class ShortenedUrl
   # generate a shortened link from a url
   # link to a user if one specified
   # throw an exception if anything goes wrong
-  def self.generate!(orig_url, owner=nil)
+  def self.generate!(orig_url, twitter=false)
     # if we get a shortened_url object with a different owner, generate
     # new one for the new owner. Otherwise return same object
-    if orig_url.is_a?(ShortenedUrl)
-      return orig_url.owner == owner ? orig_url : generate!(orig_url.url, owner)
-    end
 
     # don't want to generate the link if it has already been generated
     # so check the datastore
     cleaned_url = clean_url(orig_url)
-    scope = owner ? owner.shortened_urls : self
-    if surl = scope.find_or_create_by(url: cleaned_url)
+    scope =  self
+    if surl = scope.find_or_create_by(url: cleaned_url, twitter:twitter)
       return surl
     else
-      return scope.create!(url: cleaned_url)
+      return scope.create!(url: cleaned_url, twitter:twitter)
     end
   end
 
