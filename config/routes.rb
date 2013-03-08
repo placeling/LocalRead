@@ -24,6 +24,8 @@ LocalRead::Application.routes.draw do
   match '/vanitystats(/:action(/:id(.:format)))', :controller => :vanity
 
 
+  get "/admin/links", :to => "admin#links", :as => :links
+
   match '/s/:id', :controller => :shortened_urls, :action => :show, :as => :shortener
   #match '/s/:id', :to => "shortened_urls#show", :as => :shortener
 

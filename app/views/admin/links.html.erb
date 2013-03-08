@@ -1,0 +1,10 @@
+
+<% zone = ActiveSupport::TimeZone.new("Pacific Time (US & Canada)") %>
+
+<%=  @links.each do |link| %>
+
+    <p>
+      <%= link.created_at.in_time_zone(zone).to_s %>: <%= link.use_count %> - <%= link_to URI.parse(link.url).host.downcase, link.url %>
+    </p>
+
+<% end %>
