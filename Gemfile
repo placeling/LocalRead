@@ -44,7 +44,7 @@ gem 'rvm-capistrano'
 
 gem "aws-ses",:require => 'aws/ses'
 
-gem 'vanity'
+gem 'vanity', :git => 'https://github.com/placeling/vanity.git'
 
 gem "airbrake"
 
