@@ -61,7 +61,7 @@ gem "instagram"
 
 
 gem "foreman", "~> 0.60.2"
-gem "redis", "~> 2.2"
+gem "redis"
 gem "redis-namespace"
 gem 'redis-rails'
 gem 'resque', :require => 'resque/server'

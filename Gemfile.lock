@@ -383,7 +383,7 @@ DEPENDENCIES
   omniauth-twitter
   quiet_assets (>= 1.0.1)
   rails (= 3.2.11)
-  redis (~> 2.2)
+  redis
   redis-namespace
   redis-rails
   resque
