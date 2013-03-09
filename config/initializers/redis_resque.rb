@@ -1,6 +1,8 @@
 require 'resque/failure/multiple'
 require 'resque/failure/airbrake'
 require 'resque/failure/redis'
+require 'resque_scheduler'
+require 'resque_scheduler/server'
 
 REDIS_CONFIG = YAML.load(File.open(Rails.root.join("config/redis.yml")))[Rails.env] #opened in application.rb
 

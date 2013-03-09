@@ -66,6 +66,7 @@ gem "redis-namespace"
 gem 'redis-rails'
 gem 'resque', :require => 'resque/server'
 gem 'resque_mailer'
+gem 'resque-scheduler', :require => 'resque_scheduler'
 
 
 gem 'mini_magick'
