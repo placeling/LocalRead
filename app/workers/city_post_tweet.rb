@@ -32,7 +32,7 @@ class CityPostTweet
       if city.twitter_access_token
         begin
           entry = $redis.lpop( city.city_queue_key )
-        end while city.tweeted_links.include?( entry[0] )
+        end while !entry.nil? && city.tweeted_links.include?( entry[0] )
 
         unless entry.nil?
           entry = JSON.parse( entry )
