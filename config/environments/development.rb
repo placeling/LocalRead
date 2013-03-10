@@ -42,4 +42,4 @@ LocalRead::Application.configure do
 
 end
 
-Resque.inline = true
+#Resque.inline = true

@@ -1,0 +1,7 @@
+queue_city_tweets:
+  cron: "0 */2 * * *"
+  class: QueueCityTweets
+  queue: high
+  args:
+  description: "Get entries from Chatham to tweet out"
+
