@@ -7,7 +7,7 @@ queue_city_tweets:
 
 
 city_post_tweet:
-  cron: "0 16,17,18,19,20,21 * * 1-5"
+  cron: "0 0,1,16,17,18,19,20,21,22,23 * * 1-5"
   class: CityPostTweet
   queue: high
   args:
