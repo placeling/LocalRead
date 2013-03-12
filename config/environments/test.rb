@@ -29,6 +29,8 @@ LocalRead::Application.configure do
   # ActionMailer::Base.deliveries array.
   config.action_mailer.delivery_method = :test
 
+  config.action_mailer.default_url_options = {:host => 'localhost', :port => 5000, :protocol => 'http'}
+  config.action_mailer.asset_host = 'http://localhost:5000'
 
   # Print deprecation notices to the stderr
   config.active_support.deprecation = :stderr

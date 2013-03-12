@@ -1,4 +1,5 @@
 require 'nokogiri'
+require 'open-uri'
 
 module ApplicationHelper
 
@@ -11,6 +12,12 @@ module ApplicationHelper
   end
 
   def self.short_url(url, twitter=false)
+
+    open(url) do |h|
+      url = h.base_uri
+      url = url.to_s
+    end
+
     short_url = ShortenedUrl.generate(url, twitter)
     short_url ? Rails.application.routes.url_helpers.shortener_path(:id => short_url.token, :host => self.get_hostname, :only_path => false ) : url
   end

@@ -10,6 +10,13 @@ require 'spec_helper'
 #     end
 #   end
 # end
-describe HomeHelper do
-  pending "add some examples to (or delete) #{__FILE__}"
+describe ApplicationHelper do
+  it "shortens a url after resovling it" do
+    short_url = "http://wp.me/p2TGqc-8lP"
+
+    url = ApplicationHelper.short_url( short_url )
+
+    puts url
+
+  end
 end
