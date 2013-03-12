@@ -5,3 +5,11 @@ queue_city_tweets:
   args:
   description: "Get entries from Chatham to tweet out"
 
+
+city_post_tweet:
+  cron: "0 16,17,18,19,20,21 * * 1-5"
+  class: CityPostTweet
+  queue: high
+  args:
+  description: "Post a tweet for cities 6 times a day during the week"
+
