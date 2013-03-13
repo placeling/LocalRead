@@ -1,5 +1,10 @@
 <% content_for :head do %>
-  <%= stylesheet_link_tag    "application", :media => "all" %>
+    <meta property="og:title" content="The Local Read For <%= @city.name %>"/>
+    <meta property="og:url" content="<%= polymorphic_url( [@issue.city, @issue] ) %>"/>
+    <meta property="og:description" content="The places that matter in Vancouver for the week ending <%= @issue.slug %>.">
+    <meta property="og:image" content="<%= asset_path("cities/vancouver.png") %>"/>
+
+    <%= stylesheet_link_tag    "application", :media => "all" %>
 <% end %>
 
 <% content_for :title do %>
