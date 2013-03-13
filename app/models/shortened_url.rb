@@ -34,9 +34,13 @@ class ShortenedUrl
     # so check the datastore
     cleaned_url = clean_url(orig_url)
     scope =  self
-    if surl = scope.find_or_create_by(url: cleaned_url, twitter:twitter)
+    if surl = scope.where(url: cleaned_url, twitter:twitter).first
       return surl
     else
+      open(cleaned_url) do |h|
+        cleaned_url = h.base_uri
+        cleaned_url = cleaned_url.to_s
+      end
       return scope.create!(url: cleaned_url, twitter:twitter)
     end
   end

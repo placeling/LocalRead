@@ -12,12 +12,6 @@ module ApplicationHelper
   end
 
   def self.short_url(url, twitter=false)
-
-    open(url) do |h|
-      url = h.base_uri
-      url = url.to_s
-    end
-
     short_url = ShortenedUrl.generate(url, twitter)
     short_url ? Rails.application.routes.url_helpers.shortener_path(:id => short_url.token, :host => self.get_hostname, :only_path => false ) : url
   end
@@ -32,6 +26,12 @@ module ApplicationHelper
     url = CGI.escape( issue_url )
 
     return "https://twitter.com/intent/tweet?text=#{text}&related=thelocalread"
+  end
+
+  def like_link( issue_url )
+    url = CGI.escape( issue_url )
+
+    return "http://www.facebook.com/share.php?u=#{url}"
   end
 
   def get_entry_image( content )

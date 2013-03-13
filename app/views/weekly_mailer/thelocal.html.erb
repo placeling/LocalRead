@@ -9,8 +9,20 @@
       <%= image_tag "tlr_title.png" %>
     </div>
 
-    <div id="headline" class="centered title">
-      This Week's Most Interesting Places In <span class="highlight"><%= @subscriber.city %></span>
+    <div class="centered">
+      <table style="width:100%">
+        <tr>
+          <td class="title">This Week's Most Interesting Places In <span class="highlight"><%= @subscriber.city %></span></td>
+          <td>
+            <%= link_to image_tag('tweet.jpg'), tweet_link( polymorphic_url( [@issue.city, @issue] ), @subscriber.city ) %>
+            <%= link_to image_tag('like.jpg'), like_link( polymorphic_url( [@issue.city, @issue] ) ) %>
+          </td>
+        </tr>
+      </table>
+    </div>
+
+    <div id="headline" >
+
     </div>
 
     <%=  render :partial => "issues/issue", :locals => {:chatham_data => @chatham_data} %>
@@ -18,11 +30,6 @@
     <div class="centered">
       <table style="width:100%">
         <tr>
-          <td>
-            <div style="text-align:center;font-size: 12px;color: rgb(154,209,197)">
-              <%= link_to image_tag('twitter.png'), tweet_link( polymorphic_url( [@issue.city, @issue] ), @subscriber.city ) %>
-            </div>
-          </td>
           <td>
             <div style="text-align:center;" class="title">
               <a href="https://www.facebook.com/dialog/oauth?client_id=515666301817401&scope=email&redirect_uri=https://apps.facebook.com/thelocalread/invite">Invite Your Friends to Subscribe</a>
