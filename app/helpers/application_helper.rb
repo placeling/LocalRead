@@ -34,11 +34,11 @@ module ApplicationHelper
     return "http://www.facebook.com/share.php?u=#{url}"
   end
 
-  def get_entry_image( content )
+  def get_entry_image( content, n=1 )
 
     doc = Nokogiri::HTML( content )
 
-    hosted_image = nil
+    hosted_images = []
 
     doc.css('img').each do |image|
       uri = URI(image['src'])
@@ -55,17 +55,21 @@ module ApplicationHelper
           hosted_image = HostedImage.new(:url => image['src'])
           hosted_image.remote_image_url = image['src']
           if hosted_image.save
+            hosted_images << hosted_image.image_url(:thumb)
+            if hosted_images.count >= n
+              break
+            end
+          end
+        else
+          hosted_images << hosted_image.image_url(:thumb)
+          if hosted_images.count >= n
             break
           end
         end
       end
     end
 
-    if hosted_image.nil?
-      return nil
-    else
-      return hosted_image.image_url(:thumb)
-    end
+    return hosted_images
   end
 
 

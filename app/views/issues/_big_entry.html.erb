@@ -1,0 +1,18 @@
+<div class="preview_area">
+  <table class="full_preview">
+    <% images = get_entry_image( content, 2 ) %>
+    <tr>
+      <td class="preview_text" colspan="<%= images.count %>">
+        <div class="title" style="font-size: 14px"><%= link_to title, short_url( url ), :class => "title_link" %></div>
+        <%= extract_snippet( content ) %> &nbsp;<%= link_to "more", short_url( url ) %>
+      </td>
+    </tr>
+    <tr>
+      <% images.each do |image| %>
+          <td class="preview_image" style="text-align: center;">
+            <%= link_to image_tag(image, :height=>"125"), short_url( url )  %>
+          </td>
+      <% end %>
+    </tr>
+  </table>
+</div>

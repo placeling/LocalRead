@@ -4,7 +4,7 @@
         <span class="highlight"><%=  place['entries'].first['blogger']['title'].html_safe %> and <%= pluralize(place['entries'].count-1, 'other') %> </span> wrote about <span class="highlight"><%= place['name'].html_safe %></span>
       </div>
       <% place['entries'].each do |entry| %>
-          <%=  render :partial => "issues/entry", :locals=> {:content => entry['content'], :title => entry['title'].html_safe, :url =>entry['url'] } %>
+          <%=  render :partial => "issues/big_entry", :locals=> {:content => entry['content'], :title => entry['title'].html_safe, :url =>entry['url'] } %>
       <% end %>
     </div>
 <% end %>

@@ -1,7 +1,7 @@
 <div class="preview_area">
   <table class="full_preview">
     <tr>
-        <% if image = get_entry_image( content ) %>
+        <% if image = get_entry_image( content )[0] %>
             <td class="preview_image" style="vertical-align: top">
               <%= link_to image_tag(image, :height=>"75"), short_url( url )  %>
             </td>
