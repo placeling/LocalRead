@@ -7,6 +7,8 @@ class ShortenedUrl
   field :use_count, type: Integer, default: 0
   field :twitter, type: Boolean, default: false
 
+  field :resolved_url, type: String
+
   index ({url:1})
 
   token :length => 5
@@ -33,15 +35,15 @@ class ShortenedUrl
     # don't want to generate the link if it has already been generated
     # so check the datastore
     cleaned_url = clean_url(orig_url)
-    scope =  self
-    if surl = scope.where(url: cleaned_url, twitter:twitter).first
+    if surl = ShortenedUrl.where(url: cleaned_url).and(twitter:twitter).first
       return surl
     else
+      final_url = nil
       open(cleaned_url) do |h|
-        cleaned_url = h.base_uri
-        cleaned_url = cleaned_url.to_s
+        final_url = h.base_uri
+        final_url = final_url.to_s
       end
-      return scope.create!(url: cleaned_url, twitter:twitter)
+      return ShortenedUrl.create!(url: cleaned_url, resolved_url: final_url, twitter:twitter)
     end
   end
 
@@ -51,6 +53,14 @@ class ShortenedUrl
       generate!(orig_url, twitter)
     rescue
       nil
+    end
+  end
+
+  def final_url
+    if self.resolved_url.nil?
+      return self.url
+    else
+      return self.resolved_url
     end
   end
 

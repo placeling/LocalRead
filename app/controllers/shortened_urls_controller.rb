@@ -16,7 +16,7 @@ class ShortenedUrlsController < ApplicationController
       #end
       request.env['HTTP_REFERER'] = "http://thelocalread.com"
       # do a 301 redirect to the destination url
-      redirect_to sl.url, :status => :moved_permanently
+      redirect_to sl.final_url, :status => :moved_permanently
     else
       # if we don't find the shortened link, redirect to the root
       # make this configurable in future versions
