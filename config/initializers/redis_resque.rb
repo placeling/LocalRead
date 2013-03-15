@@ -1,5 +1,4 @@
 require 'resque/failure/multiple'
-require 'resque/failure/airbrake'
 require 'resque/failure/redis'
 require 'resque_scheduler'
 require 'resque_scheduler/server'
@@ -14,9 +13,6 @@ Resque.redis.namespace = "resque:tlr"
 Resque::Failure::Airbrake.configure do |config|
   config.api_key = '6755c72bfd6c153034b214a73c4f6176'
 end
-
-Resque::Failure::Multiple.classes = [Resque::Failure::Redis, Resque::Failure::Airbrake]
-Resque::Failure.backend = Resque::Failure::Multiple
 
 unless defined?(RESQUE_LOGGER)
   f = File.open("#{Rails.root}/log/resque.log", 'a+')
