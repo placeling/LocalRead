@@ -10,9 +10,6 @@ redis_base = Redis.new(REDIS_CONFIG.symbolize_keys!)
 Resque.redis = redis_base
 Resque.redis.namespace = "resque:tlr"
 
-Resque::Failure::Airbrake.configure do |config|
-  config.api_key = '6755c72bfd6c153034b214a73c4f6176'
-end
 
 unless defined?(RESQUE_LOGGER)
   f = File.open("#{Rails.root}/log/resque.log", 'a+')
