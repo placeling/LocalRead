@@ -52,7 +52,7 @@ class CityPostTweet
           title = nil
           coeff = nil
           if !entry[5].nil? && entry[5] != ''
-            title = entry[5]
+            title = entry[5].html_safe
             coeff = dice_coefficient(title.downcase, entry[2].downcase)
           end
           
@@ -199,7 +199,7 @@ class CityPostTweet
           city.save
 
           if Rails.env.production?
-            twitter_client.update( text.html_safe )
+            twitter_client.update( text )
           end
         end
 
