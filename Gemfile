@@ -46,8 +46,6 @@ gem "aws-ses",:require => 'aws/ses'
 
 gem 'vanity', :git => 'https://github.com/placeling/vanity.git'
 
-gem "airbrake"
-
 gem 'httparty'
 
 group :test, :development do
