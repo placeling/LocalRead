@@ -199,7 +199,7 @@ class CityPostTweet
           city.save
 
           if Rails.env.production?
-            twitter_client.update( text )
+            twitter_client.update( text.html_safe )
           end
         end
 
