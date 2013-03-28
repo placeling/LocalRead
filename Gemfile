@@ -17,18 +17,13 @@ group :assets do
   gem 'uglifier', '>= 1.0.3'
 end
 
-gem 'jquery-rails'
-
 # To use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.0.0'
 
 # To use Jbuilder templates for JSON
 # gem 'jbuilder'
 
-gem 'omniauth-twitter'
-gem 'omniauth-facebook'
-gem 'twitter'
-gem 'koala'
+
 
 # Use unicorn as the app server
 # gem 'unicorn'
@@ -42,29 +37,11 @@ gem 'koala'
 gem "capistrano"
 gem 'rvm-capistrano'
 
-gem "aws-ses",:require => 'aws/ses'
-
-gem 'vanity', :git => 'https://github.com/placeling/vanity.git'
-
 gem 'httparty'
 
 group :test, :development do
   gem "quiet_assets", ">= 1.0.1"
 end
-
-gem 'mail_view', :git => 'https://github.com/37signals/mail_view.git'
-
-gem "actionmailer_inline_css"
-gem "instagram"
-
-
-gem "foreman", "~> 0.60.2"
-gem "redis"
-gem "redis-namespace"
-gem 'redis-rails'
-gem 'resque', :require => 'resque/server'
-gem 'resque_mailer'
-gem 'resque-scheduler', :require => 'resque_scheduler'
 
 
 gem 'mini_magick'
@@ -85,12 +62,3 @@ gem 'mongoid_slug'
 gem "mongoid_rails_migrations", "~> 0.0.13"
 gem 'mongoid_token', '~> 1.1.0'
 
-gem "rspec-rails", ">= 2.11.4", :group => [:development, :test]
-gem "database_cleaner", ">= 0.9.1", :group => :test
-gem "mongoid-rspec", ">= 1.5.5", :group => :test
-gem "email_spec", ">= 1.4.0", :group => :test
-gem "factory_girl_rails", ">= 4.1.0", :group => [:development, :test]
-gem "devise", ">= 2.1.2"
-gem "figaro", ">= 0.5.0"
-
-gem "devise-async"
